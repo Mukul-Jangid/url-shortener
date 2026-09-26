@@ -109,6 +109,39 @@ class UrlControllerTest {
   }
 
   @Test
+  void getAnalytics_existingCode_returns200OkWithAnalytics() throws Exception {
+    com.urlshortener.dto.ShortUrlAnalyticsResponse analytics =
+        new com.urlshortener.dto.ShortUrlAnalyticsResponse(
+            "abcdef7",
+            "http://localhost:8080/abcdef7",
+            "https://example.com/test",
+            42L,
+            OffsetDateTime.now(),
+            OffsetDateTime.now(),
+            true);
+
+    when(service.getAnalytics("abcdef7")).thenReturn(analytics);
+
+    mockMvc
+        .perform(get("/api/v1/urls/abcdef7/analytics"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.code").value("abcdef7"))
+        .andExpect(jsonPath("$.clickCount").value(42))
+        .andExpect(jsonPath("$.active").value(true));
+  }
+
+  @Test
+  void getAnalytics_unknownCode_returns404NotFoundProblemDetail() throws Exception {
+    when(service.getAnalytics("missing")).thenThrow(new UrlNotFoundException("missing"));
+
+    mockMvc
+        .perform(get("/api/v1/urls/missing/analytics"))
+        .andExpect(status().isNotFound())
+        .andExpect(jsonPath("$.title").value("Short URL Not Found"))
+        .andExpect(jsonPath("$.detail").value("Short URL not found or inactive for code: missing"));
+  }
+
+  @Test
   void deactivateShortUrl_existingCode_returns204NoContent() throws Exception {
     org.mockito.Mockito.doNothing().when(service).deactivateShortUrl("deact12");
 
