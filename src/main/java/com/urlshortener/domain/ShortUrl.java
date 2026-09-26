@@ -36,6 +36,12 @@ public class ShortUrl {
   @Column(name = "active", nullable = false)
   private boolean active;
 
+  @Column(name = "click_count", nullable = false)
+  private long clickCount = 0L;
+
+  @Column(name = "last_accessed_at")
+  private Instant lastAccessedAt;
+
   /** Default constructor required by JPA. */
   public ShortUrl() {}
 
@@ -58,10 +64,32 @@ public class ShortUrl {
    * @param active True if link can be used for redirecting; false if deactivated.
    */
   public ShortUrl(String code, String originalUrl, Instant createdAt, boolean active) {
+    this(code, originalUrl, createdAt, active, 0L, null);
+  }
+
+  /**
+   * Constructs a new ShortUrl instance with complete analytics details.
+   *
+   * @param code Unique short identifier string.
+   * @param originalUrl Original destination web address.
+   * @param createdAt Time when this short link was created.
+   * @param active True if link can be used for redirecting; false if deactivated.
+   * @param clickCount Total number of successful redirects.
+   * @param lastAccessedAt Timestamp of the most recent redirect access.
+   */
+  public ShortUrl(
+      String code,
+      String originalUrl,
+      Instant createdAt,
+      boolean active,
+      long clickCount,
+      Instant lastAccessedAt) {
     this.code = code;
     this.originalUrl = originalUrl;
     this.createdAt = createdAt;
     this.active = active;
+    this.clickCount = clickCount;
+    this.lastAccessedAt = lastAccessedAt;
   }
 
   public Long getId() {
@@ -102,6 +130,22 @@ public class ShortUrl {
 
   public void setActive(boolean active) {
     this.active = active;
+  }
+
+  public long getClickCount() {
+    return clickCount;
+  }
+
+  public void setClickCount(long clickCount) {
+    this.clickCount = clickCount;
+  }
+
+  public Instant getLastAccessedAt() {
+    return lastAccessedAt;
+  }
+
+  public void setLastAccessedAt(Instant lastAccessedAt) {
+    this.lastAccessedAt = lastAccessedAt;
   }
 
   @Override

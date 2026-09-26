@@ -32,4 +32,19 @@ public interface ShortUrlRepository extends JpaRepository<ShortUrl, Long> {
    * @return true if a record exists with the code, false otherwise.
    */
   boolean existsByCode(String code);
+
+  /**
+   * Atomically increments the click count and updates the last accessed timestamp for a short link
+   * code.
+   *
+   * @param code The short code identifier.
+   * @param now Current timestamp when the link was accessed.
+   * @return The number of rows updated (1 if found and active, 0 otherwise).
+   */
+  @org.springframework.data.jpa.repository.Modifying
+  @org.springframework.data.jpa.repository.Query(
+      "UPDATE ShortUrl s SET s.clickCount = s.clickCount + 1, s.lastAccessedAt = :now WHERE s.code = :code AND s.active = true")
+  int incrementClickCount(
+      @org.springframework.data.repository.query.Param("code") String code,
+      @org.springframework.data.repository.query.Param("now") java.time.Instant now);
 }
