@@ -11,7 +11,7 @@ this table's Status column as tasks close risks out; detail lives in the categor
 | R-003 | Sequential/guessable short codes allow enumeration | [Security](security.md) | Medium | Medium | Open | GF-102; BF-201 review |
 | R-004 | Unsafe schemes and malicious destinations | [Security](security.md) | Medium | High | Open | GF-102/GF-106; VAL-403 review |
 | R-005 | Redirect endpoint becomes a bottleneck under load | [Performance/Scalability](performance-scalability.md) | Unknown until measured | Medium | Open | VAL-404; BF-203 if selected |
-| R-006 | Race condition on click-count increment | [Data Integrity](data-integrity.md) | Medium | Low-Medium | Open | AMB-304, AMB-305 |
+| R-006 | Race condition on click-count increment | [Data Integrity](data-integrity.md) | Low | Low-Medium | Mitigated | AMB-304, AMB-305 |
 | R-007 | Unrestricted create endpoint enables spam/abuse | [Security](security.md) | Medium | Medium | Open | VAL-402 |
 | R-008 | Datastore unavailability takes down redirect path entirely | [Availability](availability.md) | Low (prototype) / Medium (prod) | High | Documented limitation, not implemented | — |
 | R-009 | AI-generated code weakens a security-sensitive area without review | [AI Usage](ai-usage.md) | Medium | High | Open (process control, ongoing) | conventions/ai-usage-rules.md |

@@ -39,15 +39,25 @@ public class ShortUrlService {
     this.baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
   }
 
-  @Transactional(readOnly = true)
+  @Transactional
   public String getOriginalUrl(String code) {
     if (code == null || code.trim().isEmpty()) {
       throw new UrlNotFoundException("Short code must not be blank");
     }
-    return repository
-        .findByCodeAndActiveTrue(code.trim())
-        .map(ShortUrl::getOriginalUrl)
-        .orElseThrow(() -> new UrlNotFoundException(code));
+    String cleanCode = code.trim();
+    ShortUrl shortUrl =
+        repository
+            .findByCodeAndActiveTrue(cleanCode)
+            .orElseThrow(() -> new UrlNotFoundException(cleanCode));
+
+    try {
+      repository.incrementClickCount(cleanCode, java.time.Instant.now());
+    } catch (Exception e) {
+      log.warn(
+          "Best-effort click count increment failed for code '{}': {}", cleanCode, e.getMessage());
+    }
+
+    return shortUrl.getOriginalUrl();
   }
 
   @Transactional(readOnly = true)
@@ -58,6 +68,17 @@ public class ShortUrlService {
     return repository
         .findByCode(code.trim())
         .map(this::mapToResponse)
+        .orElseThrow(() -> new UrlNotFoundException(code));
+  }
+
+  @Transactional(readOnly = true)
+  public com.urlshortener.dto.ShortUrlAnalyticsResponse getAnalytics(String code) {
+    if (code == null || code.trim().isEmpty()) {
+      throw new UrlNotFoundException("Short code must not be blank");
+    }
+    return repository
+        .findByCode(code.trim())
+        .map(this::mapToAnalyticsResponse)
         .orElseThrow(() -> new UrlNotFoundException(code));
   }
 
@@ -151,5 +172,25 @@ public class ShortUrlService {
             : null;
     return new ShortUrlResponse(
         entity.getCode(), fullShortUrl, entity.getOriginalUrl(), entity.isActive(), createdAt);
+  }
+
+  private com.urlshortener.dto.ShortUrlAnalyticsResponse mapToAnalyticsResponse(ShortUrl entity) {
+    String fullShortUrl = baseUrl + "/" + entity.getCode();
+    java.time.OffsetDateTime createdAt =
+        entity.getCreatedAt() != null
+            ? entity.getCreatedAt().atOffset(java.time.ZoneOffset.UTC)
+            : null;
+    java.time.OffsetDateTime lastAccessedAt =
+        entity.getLastAccessedAt() != null
+            ? entity.getLastAccessedAt().atOffset(java.time.ZoneOffset.UTC)
+            : null;
+    return new com.urlshortener.dto.ShortUrlAnalyticsResponse(
+        entity.getCode(),
+        fullShortUrl,
+        entity.getOriginalUrl(),
+        entity.getClickCount(),
+        createdAt,
+        lastAccessedAt,
+        entity.isActive());
   }
 }

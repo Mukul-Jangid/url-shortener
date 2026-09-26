@@ -13,10 +13,8 @@
 
 ## R-006: Race condition on click-count increment under concurrent redirects
 
-- **Likelihood**: Medium — directly proportional to traffic concurrency on popular short links.
-- **Impact**: Low-Medium — undercounts analytics; doesn't corrupt the redirect itself or lose
-  the mapping, but makes the analytics feature (Phase 3) untrustworthy if not addressed.
-- **Mitigation**: Atomic DB-level increment (`UPDATE ... SET count = count + 1`), not an
-  application-level read-modify-write. Verified with a genuine concurrent-access test, not just
-  reasoning about the SQL.
+- **Likelihood**: Low (Mitigated)
+- **Impact**: Low-Medium — undercounts analytics if unhandled; now mitigated.
+- **Status**: Mitigated (`AMB-304`, `AMB-305`)
+- **Mitigation**: Atomic DB-level increment (`UPDATE short_urls SET click_count = click_count + 1, last_accessed_at = :now WHERE code = :code`). Verified via multi-threaded integration test (`UrlAnalyticsConcurrencyTest.java`).
 - **Owning tasks**: `AMB-304` (implementation), `AMB-305` (proof via test)
