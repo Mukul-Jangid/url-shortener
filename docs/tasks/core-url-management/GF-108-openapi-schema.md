@@ -5,9 +5,9 @@
 | **Type** | Task |
 | **Module** | Core URL Management |
 | **Epic / Phase** | Phase 1 — Greenfield Core |
-| **Status** | Not Started |
+| **Status** | In Review |
 | **Priority** | Medium |
-| **Depends on** | GF-102, GF-103, GF-104, GF-105, GF-106 |
+| **Depends on** | GF-102 |
 | **Blocks** | — |
 | **AI Work Log** | docs/ai-work-log/entries/GF-108.md |
 
@@ -18,11 +18,11 @@ Add springdoc-openapi so the API is self-documenting, and link the generated spe
 
 ## Acceptance Criteria
 
-- [ ] `springdoc-openapi-starter-webmvc-ui` dependency added (justify in AI Work Log per
+- [x] `springdoc-openapi-starter-webmvc-ui` dependency added (justify in AI Work Log per
       `docs/conventions/ai-usage-rules.md` — new dependency rule)
-- [ ] `/swagger-ui.html` renders all Phase 1 endpoints with request/response schemas
-- [ ] Each DTO field has a description annotation for anything non-obvious (e.g., `code` format)
-- [ ] `docs/architecture/03-api-design.md` updated to link to the live spec instead of restating it
+- [x] `/swagger-ui.html` renders all Phase 1 endpoints with request/response schemas
+- [x] Each DTO field has a description annotation for anything non-obvious (e.g., `code` format)
+- [x] `docs/architecture/03-api-design.md` updated to link to the live spec instead of restating it
 
 ## AI Collaboration Plan
 
@@ -33,10 +33,10 @@ Add springdoc-openapi so the API is self-documenting, and link the generated spe
 
 ## Definition of Done
 
-- [ ] Code implemented per acceptance criteria
-- [ ] Quality gates passed
-- [ ] AI Work Log entry closed (with dependency justification)
-- [ ] `03-api-design.md` updated
+- [x] Code implemented per acceptance criteria
+- [x] Quality gates passed
+- [x] AI Work Log entry closed (with dependency justification)
+- [x] `03-api-design.md` updated
 
 ## Dev Notes
 

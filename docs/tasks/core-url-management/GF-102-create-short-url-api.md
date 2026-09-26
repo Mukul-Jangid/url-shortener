@@ -5,7 +5,7 @@
 | **Type** | Story |
 | **Module** | Core URL Management |
 | **Epic / Phase** | Phase 1 — Greenfield Core |
-| **Status** | Not Started |
+| **Status** | In Review |
 | **Priority** | High |
 | **Depends on** | GF-101, GF-106 |
 | **Blocks** | GF-103, GF-107, GF-108 |
@@ -24,13 +24,13 @@ generation strategy is on the high-impact list) — requires explicit Reviewer D
 
 ## Acceptance Criteria
 
-- [ ] `POST /api/v1/urls` accepts `{ "originalUrl": "..." }`, returns `201` with the created
+- [x] `POST /api/v1/urls` accepts `{ "originalUrl": "..." }`, returns `201` with the created
       short code + full short URL
-- [ ] Use GF-106 validation: nonblank absolute HTTP/HTTPS URL with a host and a documented
+- [x] Use GF-106 validation: nonblank absolute HTTP/HTTPS URL with a host and a documented
       length limit. Malformed/unsupported targets return `400` with `ProblemDetail`.
-- [ ] Collision retry is bounded (max attempts), not unbounded (this is the known interim risk —
+- [x] Collision retry is bounded (max attempts), not unbounded (this is the known interim risk —
       see R-002); exceeding the bound returns a `503`-class error, not a hang
-- [ ] Response DTO does not expose internal entity fields beyond what's needed
+- [x] Response DTO does not expose internal entity fields beyond what's needed
 
 ## Technical Notes / Constraints
 
@@ -54,12 +54,12 @@ generation strategy is on the high-impact list) — requires explicit Reviewer D
 
 ## Definition of Done
 
-- [ ] Code implemented per acceptance criteria
-- [ ] Tests written and passing (valid/invalid input, database collision handling, retry bound)
-- [ ] README includes a verified create example
-- [ ] Quality gates passed
-- [ ] AI Work Log entry closed **with Reviewer Decision: APPROVED** (high-impact: ID generation)
-- [ ] `docs/architecture/01-component-architecture.md` status table updated
+- [x] Code implemented per acceptance criteria
+- [x] Tests written and passing (valid/invalid input, database collision handling, retry bound)
+- [x] README includes a verified create example
+- [x] Quality gates passed
+- [x] AI Work Log entry closed **with Reviewer Decision: APPROVED** (high-impact: ID generation)
+- [x] `docs/architecture/01-component-architecture.md` status table updated
 
 ## Dev Notes
 

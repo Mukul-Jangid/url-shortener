@@ -24,4 +24,12 @@ public interface ShortUrlRepository extends JpaRepository<ShortUrl, Long> {
    * @return An Optional containing the ShortUrl if found.
    */
   Optional<ShortUrl> findByCode(String code);
+
+  /**
+   * Checks if a short link exists with the given code.
+   *
+   * @param code The short code identifier.
+   * @return true if a record exists with the code, false otherwise.
+   */
+  boolean existsByCode(String code);
 }

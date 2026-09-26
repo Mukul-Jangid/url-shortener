@@ -1,0 +1,84 @@
+package com.urlshortener.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import com.urlshortener.domain.ShortUrl;
+import com.urlshortener.dto.CreateShortUrlRequest;
+import com.urlshortener.dto.ShortUrlResponse;
+import com.urlshortener.exception.CodeGenerationException;
+import com.urlshortener.exception.InvalidUrlException;
+import com.urlshortener.repository.ShortUrlRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+class ShortUrlServiceTest {
+
+  private ShortUrlRepository repository;
+  private ShortUrlCodeGenerator codeGenerator;
+  private ShortUrlService service;
+
+  @BeforeEach
+  void setUp() {
+    repository = mock(ShortUrlRepository.class);
+    codeGenerator = mock(ShortUrlCodeGenerator.class);
+    service = new ShortUrlService(repository, codeGenerator, "http://localhost:8080");
+  }
+
+  @Test
+  void createShortUrl_validUrl_returnsShortUrlResponse() {
+    when(codeGenerator.generateCode()).thenReturn("abc1234");
+    when(repository.existsByCode("abc1234")).thenReturn(false);
+    when(repository.save(any(ShortUrl.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+    CreateShortUrlRequest request = new CreateShortUrlRequest("https://example.com/long/path");
+    ShortUrlResponse response = service.createShortUrl(request);
+
+    assertNotNull(response);
+    assertEquals("abc1234", response.getCode());
+    assertEquals("http://localhost:8080/abc1234", response.getShortUrl());
+    assertEquals("https://example.com/long/path", response.getOriginalUrl());
+    assertTrue(response.isActive());
+    assertNotNull(response.getCreatedAt());
+  }
+
+  @Test
+  void createShortUrl_invalidUrl_throwsInvalidUrlException() {
+    CreateShortUrlRequest emptyRequest = new CreateShortUrlRequest(" ");
+    assertThrows(InvalidUrlException.class, () -> service.createShortUrl(emptyRequest));
+
+    CreateShortUrlRequest ftpRequest = new CreateShortUrlRequest("ftp://example.com");
+    assertThrows(InvalidUrlException.class, () -> service.createShortUrl(ftpRequest));
+  }
+
+  @Test
+  void createShortUrl_collisionRetries_succeedsOnLaterAttempt() {
+    when(codeGenerator.generateCode()).thenReturn("code1", "code2");
+    when(repository.existsByCode("code1")).thenReturn(true);
+    when(repository.existsByCode("code2")).thenReturn(false);
+    when(repository.save(any(ShortUrl.class))).thenAnswer(i -> i.getArgument(0));
+
+    CreateShortUrlRequest request = new CreateShortUrlRequest("https://example.com");
+    ShortUrlResponse response = service.createShortUrl(request);
+
+    assertEquals("code2", response.getCode());
+    verify(codeGenerator, times(2)).generateCode();
+  }
+
+  @Test
+  void createShortUrl_exceedsMaxRetries_throwsCodeGenerationException() {
+    when(codeGenerator.generateCode()).thenReturn("dupCode");
+    when(repository.existsByCode("dupCode")).thenReturn(true);
+
+    CreateShortUrlRequest request = new CreateShortUrlRequest("https://example.com");
+    assertThrows(CodeGenerationException.class, () -> service.createShortUrl(request));
+    verify(codeGenerator, times(5)).generateCode();
+  }
+}

@@ -40,6 +40,16 @@ public class ShortUrl {
   public ShortUrl() {}
 
   /**
+   * Convenient constructor for creating a new active ShortUrl with current timestamp.
+   *
+   * @param code Unique short identifier string.
+   * @param originalUrl Original destination web address.
+   */
+  public ShortUrl(String code, String originalUrl) {
+    this(code, originalUrl, Instant.now(), true);
+  }
+
+  /**
    * Constructs a new ShortUrl instance.
    *
    * @param code Unique short identifier string.

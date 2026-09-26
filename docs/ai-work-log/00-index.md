@@ -41,5 +41,7 @@ See `docs/conventions/ai-usage-rules.md` — reproduced here for convenience:
 | SCAFFOLD-004 | [entries/SCAFFOLD-004.md](entries/SCAFFOLD-004.md) | Open (setup verified; engineer review pending) |
 | GF-101 | [entries/GF-101.md](entries/GF-101.md) | Closed (`ShortUrl` domain entity & repository) |
 | GF-106 | [entries/GF-106.md](entries/GF-106.md) | Open (Input validation & centralized error handling) |
+| GF-102 | [entries/GF-102.md](entries/GF-102.md) | Open (`POST /api/v1/urls` Create Short URL API) |
+| GF-108 | [entries/GF-108.md](entries/GF-108.md) | Open (OpenAPI & Swagger UI integration) |
 
 *(new rows added here as tasks start — keep this table in sync with `entries/`)*
