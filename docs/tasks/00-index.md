@@ -60,7 +60,7 @@ exist but its engineer review is pending. Their original work logs remain unchan
 | [VAL-402](validation-hardening/VAL-402-rate-limiting.md) | Rate limiting on create endpoint | Later candidate | Not Started | VAL-401 |
 | [VAL-403](validation-hardening/VAL-403-redirect-target-validation.md) | Review additional destination policy | Later candidate | Not Started | VAL-401 |
 | [VAL-404](validation-hardening/VAL-404-load-sanity-check.md) | Load/latency sanity check, redirect path | Later candidate | Not Started | GF-107 |
-| [DOC-501](documentation/DOC-501-readme.md) | README setup/run instructions | Later candidate | Not Started (initial version already exists from SCAFFOLD-000; this task finalizes it) | Phase 1 |
+| [DOC-501](documentation/DOC-501-readme.md) | README setup/run instructions | 1 — Create and redirect | In Review | Phase 1 |
 | [DOC-502](documentation/DOC-502-final-summary.md) | FINAL_SUMMARY.md | Later candidate | Not Started | All selected delivery tasks |
 
 ## Before selecting a later candidate
