@@ -44,7 +44,7 @@ exist but its engineer review is pending. Their original work logs remain unchan
 | [GF-103](core-url-management/GF-103-redirect-endpoint.md) | `GET /{code}` — redirect endpoint | 1 — Create and redirect | In Review | GF-102 |
 | [GF-104](core-url-management/GF-104-metadata-lookup.md) | `GET /api/v1/urls/{code}` — metadata lookup | 2 — Manage links | In Review | GF-103 |
 | [GF-105](core-url-management/GF-105-deactivate-endpoint.md) | `DELETE /api/v1/urls/{code}` — deactivate | 2 — Manage links | In Review | GF-104 |
-| [GF-107](core-url-management/GF-107-phase1-tests.md) | Unit + integration tests, Phase 1 | 2 — Manage links | Not Started | GF-102, GF-103, GF-104, GF-105, GF-106 |
+| [GF-107](core-url-management/GF-107-phase1-tests.md) | Unit + integration tests, Phase 1 | 2 — Manage links | In Review | GF-102, GF-103, GF-104, GF-105, GF-106 |
 | [GF-108](core-url-management/GF-108-openapi-schema.md) | OpenAPI/schema definitions, Phase 1 | 1 — Create and redirect | In Review | GF-102 |
 | [BF-201](short-code-refactoring/BF-201-impact-analysis.md) | Impact analysis: short code generation + redirect path | Later candidate | Not Started | Phase 1 complete (GF-107) |
 | [BF-202](short-code-refactoring/BF-202-refactor-id-generation.md) | Refine short code generation when justified | Later candidate | Not Started | BF-201 |

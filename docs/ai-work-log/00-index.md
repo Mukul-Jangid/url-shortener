@@ -46,5 +46,6 @@ See `docs/conventions/ai-usage-rules.md` — reproduced here for convenience:
 | GF-103 | [entries/GF-103.md](entries/GF-103.md) | Open (`GET /{code}` Redirect Endpoint) |
 | GF-104 | [entries/GF-104.md](entries/GF-104.md) | Open (`GET /api/v1/urls/{code}` Metadata Lookup Endpoint) |
 | GF-105 | [entries/GF-105.md](entries/GF-105.md) | Open (`DELETE /api/v1/urls/{code}` Deactivate Endpoint) |
+| GF-107 | [entries/GF-107.md](entries/GF-107.md) | Open (Phase 1 Test Audit & Completion Checkpoint) |
 
 *(new rows added here as tasks start — keep this table in sync with `entries/`)*
