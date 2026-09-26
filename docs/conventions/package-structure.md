@@ -1,7 +1,7 @@
 # Package Structure
 
 ```
-com.interview.urlshortener
+com.urlshortener
 ├── controller   — REST endpoints only. No business logic. Maps DTO <-> service calls.
 ├── service      — Business rules live here. No direct HTTP/JPA-specific concerns leaking in.
 ├── repository   — Spring Data JPA interfaces only.
@@ -16,3 +16,7 @@ repository. Services never depend on controllers; repositories never depend on s
 enforced by convention and code review for this project's size, not by build tooling (e.g., no
 ArchUnit rule configured — could be added as a hardening task if desired, but isn't in the
 current backlog).
+
+Each package is tracked with a `package-info.java` describing its responsibility. Add classes
+when their feature task starts. Keep tests under the matching `src/test/java` package as tests
+are introduced; do not create empty test classes or speculative subpackages.

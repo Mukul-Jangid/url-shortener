@@ -20,7 +20,7 @@ just because it appears in the future backlog.
   behavior; do not defer them to a later testing phase.
 - Do not add caching, analytics fields, new infrastructure, generic frameworks, or dependencies
   in anticipation of a later task. State the current need first.
-- Write plain-language decisions: problem, choice, reason, trade-off, and when to revisit.
+- Write plain, simple language for all code comments, API documentation, OpenAPI annotations, decisions, and Dev Notes (avoid complex jargon or academic phrasing).
   Record local choices in task Dev Notes; use an ADR for lasting cross-task decisions.
 - Finish implementation, tests, and documentation before requesting any required review.
   Agents may move work to `In Review`; the engineer owns `Done` and high-impact approval under
@@ -31,5 +31,5 @@ just because it appears in the future backlog.
   status and supersession links may be updated in an accepted ADR.
 - Do not implement feature code as part of a guidelines or planning task.
 
-Current project: Java 17 target, Spring Boot, Maven, and H2 in memory. Feature endpoints do not
+Current project: Java 21 target (full JDK required), Spring Boot, Maven, and H2 in memory. Feature endpoints do not
 exist yet. See the board for setup verification before starting features.

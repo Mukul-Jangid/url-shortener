@@ -3,8 +3,7 @@
 ## Status
 
 Application scaffold present; no feature endpoints yet. Incremental development guidelines are prepared for review before feature work. See [development guidelines](docs/conventions/development-workflow.md) and the
-[task board](docs/tasks/00-index.md). Build verification is tracked in SCAFFOLD-003: Maven is
-not installed in the inspected environment and no wrapper is present.
+[task board](docs/tasks/00-index.md). Setup and build verification are tracked in SCAFFOLD-003.
 
 Private repository: [Mukul-Jangid/url-shortener](https://github.com/Mukul-Jangid/url-shortener).
 
@@ -17,13 +16,35 @@ passing the gates in `docs/conventions/quality-gates.md`.
 
 ## Requirements
 
-- Java 17
-- Maven 3.9+ (or use the included `mvnw` wrapper once added)
+- JDK 21 (including `javac`, not just the Java runtime)
+- Use the included Maven wrapper (`./mvnw`, or `mvnw.cmd` on Windows), pinned to Maven 3.9.16.
+  The first run downloads Maven and dependencies; no global Maven installation is required.
+
+## Project structure
+
+```text
+.mvn/wrapper/                     Maven version and download configuration
+src/main/java/com/interview/urlshortener/
+  UrlShortenerApplication.java    Spring Boot entry point
+  controller/                    HTTP endpoints
+  service/                       Business rules
+  repository/                    Database access
+  domain/                        Entities and domain model
+  dto/                           API requests and responses
+  exception/                     Exceptions and HTTP error mapping
+  config/                        Spring configuration
+src/main/resources/              Application configuration
+src/test/java/                   Tests, matching application packages
+docs/                            Guidelines, tasks, and decisions
+```
+
+Package folders currently contain only package documentation; feature classes arrive with
+their tasks. Maven generates build output in `target/`, which Git ignores.
 
 ## Run it
 
 ```bash
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 
 The app starts on `http://localhost:8080`. Health check: `http://localhost:8080/actuator/health`.
@@ -33,7 +54,7 @@ H2 console (currently enabled in the default configuration; intended for local u
 ## Test it
 
 ```bash
-mvn test
+./mvnw verify
 ```
 
 ## Known limitations (current state)

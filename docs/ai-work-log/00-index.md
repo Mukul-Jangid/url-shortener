@@ -37,6 +37,7 @@ See `docs/conventions/ai-usage-rules.md` — reproduced here for convenience:
 | SCAFFOLD-000 | [entries/SCAFFOLD-000.md](entries/SCAFFOLD-000.md) | Open (historical review pending; build verification in SCAFFOLD-003) |
 | SCAFFOLD-001 | [entries/SCAFFOLD-001.md](entries/SCAFFOLD-001.md) | Open (historical docs review pending) |
 | SCAFFOLD-002 | [entries/SCAFFOLD-002.md](entries/SCAFFOLD-002.md) | Open (guidelines verified; engineer review pending) |
+| SCAFFOLD-003 | [entries/SCAFFOLD-003.md](entries/SCAFFOLD-003.md) | Open (Java 21 build setup) |
 | SCAFFOLD-004 | [entries/SCAFFOLD-004.md](entries/SCAFFOLD-004.md) | Open (setup verified; engineer review pending) |
 
 *(new rows added here as tasks start — keep this table in sync with `entries/`)*

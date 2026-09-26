@@ -19,7 +19,7 @@ feature task already updates its runnable examples; this is a completeness check
 ## Acceptance Criteria
 
 - [ ] Setup/run instructions verified to actually work end-to-end (someone with a clean checkout
-      and Java 17 + Maven can run it following only the README)
+      and JDK 21 + Maven can run it following only the README)
 - [ ] Example `curl` requests for every Phase 1 endpoint (and analytics, once AMB-303 lands)
 - [ ] "Known limitations" section reflects actual final state, not the Phase 0 placeholder list
 - [ ] Links to `docs/00-INDEX.md` remain accurate (folder names/paths unchanged or links updated)
