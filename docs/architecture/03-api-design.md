@@ -13,10 +13,10 @@
 | Endpoint | Method | Purpose | Status | Task |
 |---|---|---|---|---|
 | `/api/v1/urls` | `POST` | Create a short URL from a long URL | Implemented | `GF-102` |
-| `/{code}` | `GET` | Redirect to the original long URL | Not started | `GF-103` |
-| `/api/v1/urls/{code}` | `GET` | Fetch metadata (no redirect) | Not started | `GF-104` |
-| `/api/v1/urls/{code}` | `DELETE` | Deactivate a short URL | Not started | `GF-105` |
-| `/api/v1/urls/{code}/analytics` | `GET` | Click analytics | Not started | `AMB-303` |
+| `/{code}` | `GET` | Redirect to the original long URL | Implemented | `GF-103` |
+| `/api/v1/urls/{code}` | `GET` | Fetch metadata (no redirect) | Implemented | `GF-104` |
+| `/api/v1/urls/{code}` | `DELETE` | Deactivate a short URL | Implemented | `GF-105` |
+| `/api/v1/urls/{code}/analytics` | `GET` | Click analytics | Implemented | `AMB-303` |
 
 ## Contract stability rule
 
