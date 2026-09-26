@@ -39,5 +39,6 @@ See `docs/conventions/ai-usage-rules.md` — reproduced here for convenience:
 | SCAFFOLD-002 | [entries/SCAFFOLD-002.md](entries/SCAFFOLD-002.md) | Open (guidelines verified; engineer review pending) |
 | SCAFFOLD-003 | [entries/SCAFFOLD-003.md](entries/SCAFFOLD-003.md) | Open (Java 21 build setup) |
 | SCAFFOLD-004 | [entries/SCAFFOLD-004.md](entries/SCAFFOLD-004.md) | Open (setup verified; engineer review pending) |
+| GF-101 | [entries/GF-101.md](entries/GF-101.md) | Open (`ShortUrl` domain entity & repository) |
 
 *(new rows added here as tasks start — keep this table in sync with `entries/`)*
