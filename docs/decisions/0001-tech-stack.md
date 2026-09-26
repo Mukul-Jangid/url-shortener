@@ -1,7 +1,7 @@
 # 0001: Use Spring Boot (Java) as the implementation stack
 
 - **Date**: 2026-09-26
-- **Status**: Accepted
+- **Status**: Java version superseded by [0006](0006-java-21.md); other stack choices accepted
 - **Task context**: Project setup (`SCAFFOLD-000`), predates the task backlog.
 
 ## Context
@@ -29,4 +29,4 @@ validation/persistence/observability, and an idiomatic layered architecture that
 
 ## Status
 
-Accepted.
+Java version superseded by [0006](0006-java-21.md); other stack choices remain accepted.

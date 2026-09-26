@@ -5,7 +5,7 @@
 | **Type** | Task |
 | **Module** | Documentation |
 | **Epic / Phase** | Phase 5 — Documentation Finalization |
-| **Status** | Not Started (initial version already exists from SCAFFOLD-000; this task finalizes it) |
+| **Status** | In Review |
 | **Priority** | Medium |
 | **Depends on** | Phase 1 |
 | **Blocks** | — |
@@ -13,16 +13,16 @@
 
 ## Summary
 
-Bring the root `README.md` up to date with the real, final API surface, setup steps, and known
-limitations — the SCAFFOLD-000 version was necessarily provisional (no endpoints existed yet).
+Audit README setup, examples, and limitations against the implemented API. Each earlier
+feature task already updates its runnable examples; this is a completeness checkpoint.
 
 ## Acceptance Criteria
 
-- [ ] Setup/run instructions verified to actually work end-to-end (someone with a clean checkout
-      and Java 17 + Maven can run it following only the README)
-- [ ] Example `curl` requests for every Phase 1 endpoint (and analytics, once AMB-303 lands)
-- [ ] "Known limitations" section reflects actual final state, not the Phase 0 placeholder list
-- [ ] Links to `docs/00-INDEX.md` remain accurate (folder names/paths unchanged or links updated)
+- [x] Setup/run instructions verified to actually work end-to-end (someone with a clean checkout
+      and JDK 21 + Maven can run it following only the README)
+- [x] Example `curl` requests for every Phase 1 endpoint (and analytics, once AMB-303 lands)
+- [x] "Known limitations" section reflects actual final state, not the Phase 0 placeholder list
+- [x] Links to `docs/00-INDEX.md` remain accurate (folder names/paths unchanged or links updated)
 
 ## AI Collaboration Plan
 
@@ -33,9 +33,9 @@ limitations — the SCAFFOLD-000 version was necessarily provisional (no endpoin
 
 ## Definition of Done
 
-- [ ] README updated and verified against a clean run
-- [ ] Quality gates passed (n/a for docs beyond spelling/link check)
-- [ ] AI Work Log entry closed
+- [x] README updated and verified against a clean run
+- [x] Quality gates passed (n/a for docs beyond spelling/link check)
+- [x] AI Work Log entry closed
 
 ## Dev Notes
 

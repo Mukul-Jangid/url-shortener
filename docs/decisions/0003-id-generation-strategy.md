@@ -1,7 +1,8 @@
 # 0003: Naive random Base62 generator for short codes (interim)
 
 - **Date**: 2026-09-26
-- **Status**: Accepted (interim) — expected to be superseded during `BF-202`
+- **Status**: Partially superseded by [0005](0005-incremental-development.md). Initial random
+  Base62 approach retained; automatic replacement and claimed benefits below are historical.
 - **Task context**: Anticipates `GF-102` (create endpoint) and `BF-202` (brownfield refactor).
 
 ## Context
@@ -38,5 +39,6 @@ the exercise is to show the refactor, not to avoid ever having the flaw.
 
 ## Status
 
-Accepted as an interim decision. Will be marked "Superseded by 000X" once `BF-202` lands, with a
-new decision file capturing the counter-based design.
+Partially superseded by [0005](0005-incremental-development.md): retain the initial random
+Base62 implementation; revisit replacement only when justified. The original rationale above
+is preserved as history, including claims corrected by 0005.

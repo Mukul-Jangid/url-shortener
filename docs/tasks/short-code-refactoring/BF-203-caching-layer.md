@@ -8,14 +8,14 @@
 | **Status** | Not Started |
 | **Priority** | High |
 | **Depends on** | BF-201 |
-| **Blocks** | BF-204, AMB-304, VAL-404 |
+| **Blocks** | BF-204 (if caching selected) |
 | **AI Work Log** | docs/ai-work-log/entries/BF-203.md |
 
 ## Summary
 
-Add a cache (Spring `@Cacheable`, in-memory Caffeine for this exercise) in front of `GET
-/{code}`'s lookup, since it's the highest-traffic path (R-005,
-`docs/architecture/05-nfr-and-scalability.md`).
+Candidate cache in front of redirect lookup. Before adding a dependency, BF-201 must record
+a measured need or explicit exercise objective and the uncached baseline. Direct database
+lookup remains the default until this task is selected and refined.
 
 ## Impact Analysis
 
@@ -27,6 +27,8 @@ Add a cache (Spring `@Cacheable`, in-memory Caffeine for this exercise) in front
 
 ## Acceptance Criteria
 
+- [ ] Cache choice, size, expiry, deactivation consistency, and failure behavior are specified
+      before implementation; do not promise datastore-outage recovery merely because a cache exists
 - [ ] `GET /{code}` lookups are served from cache on repeat requests for the same code
 - [ ] Deactivating a code (`GF-105`) invalidates its cache entry — verified by a test that
       deactivates then immediately re-requests the redirect and expects `404`

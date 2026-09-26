@@ -7,7 +7,7 @@
 | **Epic / Phase** | Phase 5 — Documentation Finalization |
 | **Status** | Not Started |
 | **Priority** | High |
-| **Depends on** | All prior phases |
+| **Depends on** | All selected delivery tasks |
 | **Blocks** | — |
 | **AI Work Log** | docs/ai-work-log/entries/DOC-502.md |
 
@@ -44,7 +44,8 @@ from what actually happened across `docs/decisions/`, `docs/tasks/`, `docs/risks
 
 - [ ] `docs/FINAL_SUMMARY.md` written and reviewed
 - [ ] AI Work Log entry closed
-- [ ] `docs/tasks/00-index.md` board shows all phases Done
+- [ ] Board accurately distinguishes accepted work, pending review, and deferred candidates;
+      do not mark unselected tasks Done to finish the summary
 
 ## Dev Notes
 

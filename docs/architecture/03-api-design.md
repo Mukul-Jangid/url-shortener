@@ -12,7 +12,7 @@
 
 | Endpoint | Method | Purpose | Status | Task |
 |---|---|---|---|---|
-| `/api/v1/urls` | `POST` | Create a short URL from a long URL | Not started | `GF-102` |
+| `/api/v1/urls` | `POST` | Create a short URL from a long URL | Implemented | `GF-102` |
 | `/{code}` | `GET` | Redirect to the original long URL | Not started | `GF-103` |
 | `/api/v1/urls/{code}` | `GET` | Fetch metadata (no redirect) | Not started | `GF-104` |
 | `/api/v1/urls/{code}` | `DELETE` | Deactivate a short URL | Not started | `GF-105` |
@@ -25,8 +25,8 @@ Once an endpoint's request/response shape is implemented and tested (Phase 1), l
 to prove this with regression tests. If a contract change is genuinely required, it goes through
 `docs/decisions/` as a new decision, not as an incidental side effect of a refactor.
 
-## Schema definitions
+## Schema definitions & Swagger UI
 
-Once implemented, request/response schemas will be captured as OpenAPI annotations directly in
-the controllers (springdoc-openapi), with the generated spec linked here rather than
-hand-duplicated in Markdown (to avoid the two drifting apart).
+OpenAPI v3 documentation and interactive Swagger UI are automatically generated via `springdoc-openapi-starter-webmvc-ui`:
+- **Interactive Swagger UI**: `http://localhost:8080/swagger-ui.html`
+- **OpenAPI v3 JSON Spec**: `http://localhost:8080/v3/api-docs`

@@ -1,6 +1,11 @@
 # docs/ — Engineering Guardrails
 
-This folder is the **control plane** for this project. It exists *before* any feature code is
+Start with [development guidelines](conventions/development-workflow.md), then the
+[task board](tasks/00-index.md) and the selected task. [AGENTS.md](../AGENTS.md) is the
+entry point for agents. Current iteration scope takes precedence over historical backlog
+design suggestions; accepted decision changes are recorded in new ADRs.
+
+This folder contains the development rules and project record. It exists *before* any feature code is
 written, and every subsequent AI-assisted task must operate inside the boundaries it sets.
 Nothing in `src/` should be created or modified by an AI tool without a corresponding entry
 in `ai-work-log/` first.
@@ -49,18 +54,19 @@ docs/
 
 ## Reading order (for a human reviewer or a new contributor — or a future agent)
 
-1. **architecture/** — what we're building, component layout, control flow for how AI is used.
-2. **decisions/** — every non-trivial technical choice, with rationale and alternatives
+1. **conventions/development-workflow.md** and **tasks/00-index.md** — current rules and scope.
+2. **architecture/** — what we're building, component layout, control flow for how AI is used.
+3. **decisions/** — every non-trivial technical choice, with rationale and alternatives
    considered, in the order they were made. This is what lets a future agent understand *why*
    the codebase looks the way it does, not just what it currently looks like.
-3. **tasks/** — the backlog: decomposition, dependencies, sequencing, grouped by module, each
+4. **tasks/** — the backlog: decomposition, dependencies, sequencing, grouped by module, each
    task a self-contained spec that becomes a historical record once completed (see the `Dev
    Notes` section every task file has).
-4. **ai-work-log/** — one traceability file per task: prompt/intent, constraints given, what was
+5. **ai-work-log/** — one traceability file per task: prompt/intent, constraints given, what was
    generated, and whether it was accepted/edited/rejected, with rationale.
-5. **risks/** — failure modes by category, likelihood/impact, and the task that mitigates each
+6. **risks/** — failure modes by category, likelihood/impact, and the task that mitigates each
    one. Includes risks specific to *using AI* on this codebase, not just risks in the domain.
-6. **conventions/** — the rules every AI-generated or human-written change must follow.
+7. **conventions/** — the rules every AI-generated or human-written change must follow.
 
 ## Mapping to the assignment's Core Requirements
 

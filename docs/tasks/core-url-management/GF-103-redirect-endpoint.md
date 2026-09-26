@@ -5,10 +5,10 @@
 | **Type** | Story |
 | **Module** | Core URL Management |
 | **Epic / Phase** | Phase 1 — Greenfield Core |
-| **Status** | Not Started |
+| **Status** | In Review |
 | **Priority** | High |
-| **Depends on** | GF-101 |
-| **Blocks** | GF-106, GF-107 |
+| **Depends on** | GF-102 |
+| **Blocks** | GF-104, GF-107 |
 | **AI Work Log** | docs/ai-work-log/entries/GF-103.md |
 
 ## Summary
@@ -20,20 +20,19 @@ The public redirect endpoint — the highest-traffic path in the system (see
 
 Given a short code, look up the active `ShortUrl` and issue an HTTP redirect (302) to
 `originalUrl`. Unknown or deactivated codes return `404`. No caching yet — that's `BF-203`; this
-task is a straightforward DB-lookup-then-redirect, kept deliberately simple so `BF-203`'s
-before/after is a clean, demonstrable brownfield diff.
+task is a straightforward database lookup and redirect, sufficient for the first working flow.
 
 ## Acceptance Criteria
 
-- [ ] `GET /{code}` returns `302` with `Location` header set to `originalUrl` for an active code
-- [ ] Returns `404` for unknown or deactivated codes
-- [ ] Does not increment click count in this task (analytics recording is `AMB-304`, sequenced
+- [x] `GET /{code}` returns `302` with `Location` header set to `originalUrl` for an active code
+- [x] Returns `404` for unknown or deactivated codes
+- [x] Does not increment click count in this task (analytics recording is `AMB-304`, sequenced
       later on purpose — see `docs/tasks/00-index.md` sequencing rationale)
 
 ## Technical Notes / Constraints
 
-- Keep this implementation intentionally simple/uncached — it is the deliberate "before" state
-  for the brownfield caching task.
+- Keep this implementation simple and uncached. A later cache requires a stated need.
+- Reuse GF-106 errors; do not add per-controller business exception handling.
 
 ## AI Collaboration Plan
 
@@ -45,10 +44,13 @@ before/after is a clean, demonstrable brownfield diff.
 
 ## Definition of Done
 
-- [ ] Code implemented per acceptance criteria
-- [ ] Tests written and passing (active code, unknown code, deactivated code)
-- [ ] Quality gates passed
-- [ ] AI Work Log entry closed
+- [x] Code implemented per acceptance criteria
+- [x] Tests written and passing (active code, unknown code, deactivated code)
+- [x] Create then redirect integration test passes, checking the Location header without
+      fetching the external destination
+- [x] README demonstrates the working create-and-redirect flow; invalid-input example verified
+- [x] Quality gates passed
+- [x] AI Work Log entry closed
 
 ## Dev Notes
 
@@ -56,4 +58,4 @@ before/after is a clean, demonstrable brownfield diff.
 
 ## Related
 
-- Risk: R-005 (docs/risks/performance-scalability.md) — flagged here, mitigated later in BF-203
+- Risk: R-005 (docs/risks/performance-scalability.md) — unmeasured; reassess before selecting BF-203

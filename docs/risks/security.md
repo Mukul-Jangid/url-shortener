@@ -5,20 +5,22 @@
 - **Likelihood**: Medium — depends entirely on the ID generation scheme chosen in `BF-202`.
 - **Impact**: Medium — allows an attacker to enumerate and discover other users' short links,
   which may be sensitive even without an authentication layer.
-- **Mitigation**: Avoid pure sequential codes; if a counter-based scheme is adopted (as planned),
-  obfuscate via Base62 encoding with bit-mixing or an offset rather than exposing the raw counter.
-- **Owning task**: `BF-202`
+- **Mitigation**: Document the initial random generator's length and randomness choice.
+  Base62 or an offset alone does not provide unpredictability. A future generator change must
+  evaluate enumeration explicitly. Short codes are not a substitute for authorization.
+- **Owning tasks**: `GF-102`; reassess in `BF-201` before selecting `BF-202`
 
-## R-004: Open redirect via malicious scheme or target
+## R-004: Unsafe schemes and malicious destinations
 
-- **Likelihood**: Medium — this is a well-known, commonly-exploited class of vulnerability for
-  any service that redirects based on user-supplied input.
-- **Impact**: High — enables phishing (redirecting through a trusted-looking short domain to a
-  malicious destination) and potentially SSRF-adjacent issues if internal targets are reachable.
-- **Mitigation**: Scheme allowlist (`http`/`https` only) and rejection of private/link-local IP
-  targets, enforced once at creation time (`VAL-403`) rather than on every redirect, to avoid
-  adding latency to the hot path.
-- **Owning task**: `VAL-403` — flagged as high-impact, requires explicit Reviewer Decision.
+- **Status**: Open; URL creation is not implemented yet.
+- **Impact**: Unsafe URI schemes and phishing through otherwise valid external destinations.
+- **Initial control**: GF-102/GF-106 reject malformed URLs and non-HTTP/HTTPS schemes at
+  creation. The service issues redirects; it does not fetch target content on the server.
+- **Remaining limitation**: A valid HTTP/HTTPS destination can still be malicious. Syntax and
+  scheme validation do not eliminate phishing or establish a comprehensive destination policy.
+- **Later review**: VAL-401/VAL-403 define any extra restrictions for the chosen deployment.
+  Do not introduce DNS resolution or server-side requests without a specific requirement.
+- **Owning tasks**: GF-102/GF-106 initially; VAL-403 for additional policy if selected.
 
 ## R-007: Unrestricted create endpoint enables spam/abuse
 

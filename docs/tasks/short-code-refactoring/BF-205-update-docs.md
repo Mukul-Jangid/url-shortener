@@ -13,19 +13,18 @@
 
 ## Summary
 
-Close the loop: this phase changed the system's shape, so the docs that describe that shape must
-be updated as part of the phase, not as an afterthought — per the update rule in
-`docs/architecture/README.md`.
+Audit the documentation updated within each selected refactoring task. This checkpoint does
+not defer documentation from BF-202/BF-203 and does not assume both changes were selected.
 
 ## Acceptance Criteria
 
-- [ ] New decision file added under `docs/decisions/` for the counter-based generation scheme,
+- [ ] Decision file for the actual selected change exists under `docs/decisions/`,
       linked from `docs/decisions/00-index.md`
-- [ ] `0003-id-generation-strategy.md` status updated to "Superseded by 000X"
+- [ ] Relevant decision status/supersession links reflect the actual change
 - [ ] `docs/architecture/01-component-architecture.md` status table updated
 - [ ] `docs/architecture/05-nfr-and-scalability.md` "Scalability" row updated
-- [ ] `docs/risks/data-integrity.md` and `docs/risks/security.md` — R-001/R-002/R-003 marked
-      Mitigated, pointing to BF-202/BF-204 as the closing tasks
+- [ ] R-001/R-002/R-003 statuses reflect evidence; mark only demonstrated mitigations,
+      linking the relevant implementation and verification tasks
 
 ## AI Collaboration Plan
 

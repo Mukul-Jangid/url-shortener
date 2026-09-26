@@ -5,10 +5,10 @@
 | **Type** | Story |
 | **Module** | Core URL Management |
 | **Epic / Phase** | Phase 1 — Greenfield Core |
-| **Status** | Not Started |
+| **Status** | In Review |
 | **Priority** | Medium |
-| **Depends on** | GF-101 |
-| **Blocks** | GF-106, GF-107 |
+| **Depends on** | GF-104 |
+| **Blocks** | GF-107 |
 | **AI Work Log** | docs/ai-work-log/entries/GF-105.md |
 
 ## Summary
@@ -18,10 +18,10 @@ analytics data and the row itself aren't destroyed.
 
 ## Acceptance Criteria
 
-- [ ] `DELETE /api/v1/urls/{code}` sets `active = false` and returns `204`
-- [ ] Idempotent: deactivating an already-inactive code still returns `204`, not an error
-- [ ] Returns `404` for a code that has never existed
-- [ ] After deactivation, `GF-103`'s redirect endpoint returns `404` for that code (cross-task
+- [x] `DELETE /api/v1/urls/{code}` sets `active = false` and returns `204`
+- [x] Idempotent: deactivating an already-inactive code still returns `204`, not an error
+- [x] Returns `404` for a code that has never existed
+- [x] After deactivation, `GF-103`'s redirect endpoint returns `404` for that code (cross-task
       acceptance check — write an integration test spanning both)
 
 ## Technical Notes / Constraints
@@ -38,10 +38,10 @@ analytics data and the row itself aren't destroyed.
 
 ## Definition of Done
 
-- [ ] Code implemented per acceptance criteria
-- [ ] Tests written and passing (including the cross-task redirect check)
-- [ ] Quality gates passed
-- [ ] AI Work Log entry closed
+- [x] Code implemented per acceptance criteria
+- [x] Tests written and passing (including the cross-task redirect check)
+- [x] Quality gates passed
+- [x] AI Work Log entry closed
 
 ## Dev Notes
 

@@ -20,6 +20,13 @@ One or two sentences — what this task delivers.
 The fuller context: what's being built or changed and why, referencing the requirement this
 traces back to (original ask, or the disambiguation/decomposition that produced it).
 
+## Scope and readiness
+
+- Current iteration and smallest useful outcome:
+- Included / deferred:
+- Open behavior questions (resolve before starting):
+- Verification plan and high-impact surfaces:
+
 ## Acceptance Criteria
 
 - [ ] AC1
@@ -47,9 +54,9 @@ patterns to follow, things explicitly *not* to change.
 ## Definition of Done
 
 - [ ] Code implemented per acceptance criteria
-- [ ] Tests written and passing
+- [ ] Applicable checks pass (behavior tests with code; link/consistency checks for docs)
 - [ ] Quality gates passed (`docs/conventions/quality-gates.md`)
-- [ ] AI Work Log entry closed with Reviewer Decision (if high-impact)
+- [ ] Engineer acceptance recorded; high-impact approval if applicable; work log closed
 - [ ] Architecture/Decisions/Risks docs updated if this task changed system shape
 
 ## Dev Notes
