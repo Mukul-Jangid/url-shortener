@@ -39,7 +39,7 @@ exist but its engineer review is pending. Their original work logs remain unchan
 | [SCAFFOLD-004](setup/SCAFFOLD-004-git-repository.md) | Set up the Git repository | 0 — Setup | In Review | GitHub account authentication |
 | [SCAFFOLD-003](setup/SCAFFOLD-003-verify-build.md) | Verify the scaffold before feature work | 0 — Setup | In Review | SCAFFOLD-002 |
 | [GF-101](core-url-management/GF-101-short-url-entity-and-repository.md) | `ShortUrl` domain entity + repository | 1 — Create and redirect | In Review | SCAFFOLD-003 |
-| [GF-106](core-url-management/GF-106-validation-and-error-handling.md) | Input validation + centralized error handling | 1 — Create and redirect | Not Started | GF-101 |
+| [GF-106](core-url-management/GF-106-validation-and-error-handling.md) | Input validation + centralized error handling | 1 — Create and redirect | In Review | GF-101 |
 | [GF-102](core-url-management/GF-102-create-short-url-api.md) | `POST /api/v1/urls` — create short URL | 1 — Create and redirect | Not Started | GF-101, GF-106 |
 | [GF-103](core-url-management/GF-103-redirect-endpoint.md) | `GET /{code}` — redirect endpoint | 1 — Create and redirect | Not Started | GF-102 |
 | [GF-104](core-url-management/GF-104-metadata-lookup.md) | `GET /api/v1/urls/{code}` — metadata lookup | 2 — Manage links | Not Started | GF-103 |

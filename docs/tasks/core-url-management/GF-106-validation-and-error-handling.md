@@ -5,7 +5,7 @@
 | **Type** | Task |
 | **Module** | Core URL Management |
 | **Epic / Phase** | Phase 1 — Greenfield Core |
-| **Status** | Not Started |
+| **Status** | In Review |
 | **Priority** | High |
 | **Depends on** | GF-101 |
 | **Blocks** | GF-102 |
@@ -19,14 +19,14 @@ domain exception to an RFC 7807 `ProblemDetail` response, per
 
 ## Acceptance Criteria
 
-- [ ] Define basic URL validation for the create request: nonblank, parseable absolute
+- [x] Define basic URL validation for the create request: nonblank, parseable absolute
       HTTP/HTTPS URL with a host. Choose and document a length limit before implementation.
-- [ ] Define stable error categories for invalid input, missing codes, and exhausted creation
+- [x] Define stable error categories for invalid input, missing codes, and exhausted creation
       retries; add focused tests for the shared validation and error mapping
-- [ ] A single `@ControllerAdvice` in `exception/` handles all domain exceptions — no
+- [x] A single `@ControllerAdvice` in `exception/` handles all domain exceptions — no
       controller has its own try/catch for business exceptions
-- [ ] Validation failures return `400` with a `ProblemDetail` body, not a raw stack trace
-- [ ] Provide the shared missing-code exception/mapping that subsequent endpoints will use;
+- [x] Validation failures return `400` with a `ProblemDetail` body, not a raw stack trace
+- [x] Provide the shared missing-code exception/mapping that subsequent endpoints will use;
       verify actual endpoint errors in their owning feature tasks
 
 ## Technical Notes / Constraints
@@ -44,14 +44,24 @@ domain exception to an RFC 7807 `ProblemDetail` response, per
 
 ## Definition of Done
 
-- [ ] Code implemented per acceptance criteria
-- [ ] Tests updated to assert `ProblemDetail` shape on error paths
-- [ ] Quality gates passed
-- [ ] AI Work Log entry closed
+- [x] Code implemented per acceptance criteria
+- [x] Tests updated to assert `ProblemDetail` shape on error paths
+- [x] Quality gates passed
+- [x] AI Work Log entry closed
 
 ## Dev Notes
 
-*(fill in once complete)*
+Implemented domain exception hierarchy under `com.urlshortener.exception`:
+- `UrlShortenerException` (base runtime exception)
+- `UrlNotFoundException` (404 Not Found)
+- `InvalidUrlException` (400 Bad Request)
+- `CodeGenerationException` (500 Internal Server Error)
+Implemented `GlobalExceptionHandler` annotated with `@RestControllerAdvice`:
+- Maps domain exceptions and Spring `MethodArgumentNotValidException` to RFC 7807 `ProblemDetail` responses.
+- Uses stable problem type URIs (`urn:problem:url-not-found`, `urn:problem:invalid-url`, `urn:problem:validation-error`, `urn:problem:code-generation-failed`, `urn:problem:internal-error`).
+- Unhandled exceptions logged at `ERROR` level with stack trace; clients receive a clean 500 `ProblemDetail`.
+Wrote unit tests in `GlobalExceptionHandlerTest` verifying HTTP status codes, titles, types, and details.
+Ran `./mvnw clean test spotless:check`: 8/8 tests passed cleanly, 18 Java files clean.
 
 ## Related
 
