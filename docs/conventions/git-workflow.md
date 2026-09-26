@@ -15,10 +15,11 @@ Every branch must have a prefix indicating its purpose, followed by the Task ID 
 
 ## 2. Branching & Merging Lifecycle
 
-1. **Branch off `main`**: Always create your feature or documentation branch from the latest `main` branch.
-2. **Develop & Verify locally**: Implement code, write unit/integration tests, and run quality gates (`./mvnw clean test spotless:check`).
-3. **Move Task to `In Review`**: Update the task file and task board status.
-4. **Merge to `main`**: Once accepted by the engineer, merge the branch into `main`.
+1. **Pre-Development Plan Discussion**: Before writing any code, discuss and align on the implementation plan (scope, files to create/modify, acceptance criteria, and constraints) with the developer.
+2. **Branch off `main`**: Create a dedicated branch from `main` matching the naming convention (e.g., `feature/<TASK-ID>-<short-description>`).
+3. **Develop & Verify Locally**: Implement code, write unit/integration tests, and run quality gates (`./mvnw clean test spotless:check`).
+4. **Developer Approval Before Commit/Push**: Present the local verification results, summary of changes, and diff to the developer. **Do not commit or push to git without explicit developer approval.**
+5. **Move Task to `In Review` & PR/Merge**: Upon approval, commit with a standard message structure, push the branch, and move task to `In Review` for merge to `main`.
 
 ## 3. Commit Message Structure
 
@@ -38,5 +39,23 @@ AI-assisted: see docs/ai-work-log/entries/<TASK-ID>.md
 
 ## 4. Key Rules
 
+* **Pre-Development Plan Required**: Never begin coding without first presenting and discussing the implementation plan.
+* **Pre-Commit Developer Approval Required**: The AI agent must never execute `git commit` or `git push` without explicit developer confirmation after local verification.
 * **One Task per Feature Branch**: Never mix multiple unrelated tasks into a single branch.
-* **No Unrelated Code on Docs Branches**: Do not write application feature code directly on `docs/` branches. Keep documentation and setup branches strictly focused on docs.
+* **No Feature Code on Docs Branches**: Do not write application feature code directly on `docs/` branches. Keep documentation and setup branches strictly focused on docs.
+
+## 5. Branching Strategy for Dependent vs. Independent Tasks
+
+* **Independent Tasks**: Branch directly off `main` (e.g., `git checkout main && git checkout -b feature/<TASK-ID>-<description>`).
+* **Dependent Tasks (Chained Feature Branches)**:
+  When a task depends on an earlier unmerged feature (e.g., `GF-106` depending on `GF-101`), chain the next feature branch directly off the parent feature branch:
+  ```bash
+  git checkout feature/GF-101-short-url-entity
+  git checkout -b feature/GF-106-validation-and-error-handling
+  ```
+  * **Rebase Policy**: Once the parent feature branch (`feature/GF-101-short-url-entity`) is merged into `main`, rebase the chained child feature branch onto `main`:
+    ```bash
+    git checkout feature/GF-106-validation-and-error-handling
+    git rebase main
+    ```
+
