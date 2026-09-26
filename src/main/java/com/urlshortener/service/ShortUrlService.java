@@ -50,6 +50,17 @@ public class ShortUrlService {
         .orElseThrow(() -> new UrlNotFoundException(code));
   }
 
+  @Transactional(readOnly = true)
+  public ShortUrlResponse getShortUrlMetadata(String code) {
+    if (code == null || code.trim().isEmpty()) {
+      throw new UrlNotFoundException("Short code must not be blank");
+    }
+    return repository
+        .findByCode(code.trim())
+        .map(this::mapToResponse)
+        .orElseThrow(() -> new UrlNotFoundException(code));
+  }
+
   @Transactional
   public ShortUrlResponse createShortUrl(CreateShortUrlRequest request) {
     validateOriginalUrl(request != null ? request.getOriginalUrl() : null);

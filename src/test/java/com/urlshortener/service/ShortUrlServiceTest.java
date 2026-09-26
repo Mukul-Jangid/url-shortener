@@ -99,4 +99,26 @@ class ShortUrlServiceTest {
         com.urlshortener.exception.UrlNotFoundException.class,
         () -> service.getOriginalUrl("unknown"));
   }
+
+  @Test
+  void getShortUrlMetadata_existingCode_returnsResponseDto() {
+    ShortUrl shortUrl = new ShortUrl("meta123", "https://example.com/meta");
+    when(repository.findByCode("meta123")).thenReturn(java.util.Optional.of(shortUrl));
+
+    ShortUrlResponse response = service.getShortUrlMetadata("meta123");
+    assertNotNull(response);
+    assertEquals("meta123", response.getCode());
+    assertEquals("https://example.com/meta", response.getOriginalUrl());
+    assertEquals("http://localhost:8080/meta123", response.getShortUrl());
+    assertTrue(response.isActive());
+  }
+
+  @Test
+  void getShortUrlMetadata_unknownCode_throwsUrlNotFoundException() {
+    when(repository.findByCode("missing")).thenReturn(java.util.Optional.empty());
+
+    assertThrows(
+        com.urlshortener.exception.UrlNotFoundException.class,
+        () -> service.getShortUrlMetadata("missing"));
+  }
 }

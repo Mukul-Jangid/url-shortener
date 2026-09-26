@@ -2,6 +2,7 @@ package com.urlshortener.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -11,6 +12,7 @@ import com.urlshortener.dto.CreateShortUrlRequest;
 import com.urlshortener.dto.ShortUrlResponse;
 import com.urlshortener.exception.GlobalExceptionHandler;
 import com.urlshortener.exception.InvalidUrlException;
+import com.urlshortener.exception.UrlNotFoundException;
 import com.urlshortener.service.ShortUrlService;
 import java.time.OffsetDateTime;
 import org.junit.jupiter.api.Test;
@@ -72,5 +74,37 @@ class UrlControllerTest {
         .andExpect(status().isBadRequest())
         .andExpect(jsonPath("$.title").value("Invalid Target URL"))
         .andExpect(jsonPath("$.detail").value("URL scheme must be http or https"));
+  }
+
+  @Test
+  void getShortUrlMetadata_existingCode_returns200OkWithResponseDto() throws Exception {
+    ShortUrlResponse response =
+        new ShortUrlResponse(
+            "abcdef7",
+            "http://localhost:8080/abcdef7",
+            "https://example.com/test",
+            true,
+            OffsetDateTime.now());
+
+    when(service.getShortUrlMetadata("abcdef7")).thenReturn(response);
+
+    mockMvc
+        .perform(get("/api/v1/urls/abcdef7"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.code").value("abcdef7"))
+        .andExpect(jsonPath("$.shortUrl").value("http://localhost:8080/abcdef7"))
+        .andExpect(jsonPath("$.originalUrl").value("https://example.com/test"))
+        .andExpect(jsonPath("$.active").value(true));
+  }
+
+  @Test
+  void getShortUrlMetadata_unknownCode_returns404NotFoundProblemDetail() throws Exception {
+    when(service.getShortUrlMetadata("missing")).thenThrow(new UrlNotFoundException("missing"));
+
+    mockMvc
+        .perform(get("/api/v1/urls/missing"))
+        .andExpect(status().isNotFound())
+        .andExpect(jsonPath("$.title").value("Short URL Not Found"))
+        .andExpect(jsonPath("$.detail").value("Short URL not found or inactive for code: missing"));
   }
 }

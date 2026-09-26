@@ -4,6 +4,7 @@ import com.urlshortener.dto.CreateShortUrlRequest;
 import com.urlshortener.dto.ShortUrlResponse;
 import com.urlshortener.service.ShortUrlService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -12,6 +13,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,5 +64,34 @@ public class UrlController {
       @RequestBody CreateShortUrlRequest request) {
     ShortUrlResponse response = service.createShortUrl(request);
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
+  }
+
+  @Operation(
+      summary = "Get short URL metadata",
+      description = "Retrieves metadata details for an existing short code without redirecting.")
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Metadata retrieved successfully",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ShortUrlResponse.class))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Short URL code not found",
+            content =
+                @Content(
+                    mediaType = "application/problem+json",
+                    schema = @Schema(implementation = ProblemDetail.class)))
+      })
+  @GetMapping("/{code}")
+  public ResponseEntity<ShortUrlResponse> getShortUrlMetadata(
+      @Parameter(description = "7-character short code identifier", example = "abc1234")
+          @PathVariable("code")
+          String code) {
+    ShortUrlResponse response = service.getShortUrlMetadata(code);
+    return ResponseEntity.ok(response);
   }
 }

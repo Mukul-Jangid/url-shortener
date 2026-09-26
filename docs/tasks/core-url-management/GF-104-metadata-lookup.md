@@ -5,7 +5,7 @@
 | **Type** | Story |
 | **Module** | Core URL Management |
 | **Epic / Phase** | Phase 1 — Greenfield Core |
-| **Status** | Not Started |
+| **Status** | In Progress |
 | **Priority** | Medium |
 | **Depends on** | GF-103 |
 | **Blocks** | GF-105, GF-107, GF-108 |
@@ -18,11 +18,11 @@ to inspect a link without following it.
 
 ## Acceptance Criteria
 
-- [ ] `GET /api/v1/urls/{code}` returns `200` with `{ code, originalUrl, createdAt, active }`
+- [x] `GET /api/v1/urls/{code}` returns `200` with `{ code, originalUrl, createdAt, active }`
       for an existing code (active or inactive — this endpoint doesn't filter, unlike the
       redirect endpoint)
-- [ ] Returns `404` for a code that has never existed
-- [ ] Response goes through a dedicated response DTO, not the entity directly
+- [x] Returns `404` for a code that has never existed
+- [x] Response goes through a dedicated response DTO, not the entity directly
 
 ## Technical Notes / Constraints
 
@@ -39,10 +39,10 @@ to inspect a link without following it.
 
 ## Definition of Done
 
-- [ ] Code implemented per acceptance criteria
-- [ ] Tests written and passing
-- [ ] Quality gates passed
-- [ ] AI Work Log entry closed
+- [x] Code implemented per acceptance criteria
+- [x] Tests written and passing
+- [x] Quality gates passed
+- [x] AI Work Log entry closed
 
 ## Dev Notes
 
