@@ -40,5 +40,5 @@ Acceptance criteria verified, work log and Dev Notes updated, and engineer accep
 ## Dev Notes
 
 Initial inspection on 2026-09-26: `java -version` reported 21.0.12; `mvn -version` failed with
-`mvn: command not found`. This folder has no `.git` directory. Git initialization is separate
-from proving the application works; do not claim commits or merge checks exist here yet.
+`mvn: command not found`. At initial inspection this folder had no `.git` directory. SCAFFOLD-004 subsequently
+initialized and pushed it to GitHub; repository setup does not establish build correctness.

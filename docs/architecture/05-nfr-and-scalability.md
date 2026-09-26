@@ -1,19 +1,19 @@
-# Non-Functional Requirements & Scalability
+# Reliability, performance, and scalability
 
-Status: initial targets, to be revisited as tasks land — each row should eventually point to the
-task(s) that actually satisfy it, and a test/measurement that proves it.
+These are iteration goals, not claims about implemented behavior. No feature endpoints or
+performance measurements exist yet.
 
-| NFR | Target | Approach | Status / owning task |
-|---|---|---|---|
-| Reliability (redirect path) | Degrade gracefully rather than fail outright on brief datastore unavailability | Caching layer in front of lookups; documented fallback behavior | `tasks/id-generation-hardening/BF-203-*.md` |
-| Performance | Redirect (`GET /{code}`) optimized ahead of write path — read:write ratio for a URL shortener is heavily read-skewed | Cache-first lookup; avoid unnecessary joins/queries on hot path | `BF-203`, load check in `tasks/validation-hardening/VAL-404-*.md` |
-| Security | No open-redirect; rate-limited creation; no unjustified PII in analytics | Scheme allowlist on write; rate limiter; analytics scope decision in `AMB-301` | `tasks/validation-hardening/VAL-402-*.md`, `VAL-403-*.md` |
-| Scalability | Code generation must not require a global lock or become a write bottleneck | Move off naive random-retry generator to counter-based scheme | `tasks/id-generation-hardening/BF-202-*.md` |
-| Data integrity | No lost updates on concurrent click recording | Atomic DB-level increment, not read-modify-write | `tasks/analytics/AMB-304-*.md` |
+| Concern | First working version | Revisit when |
+|---|---|---|
+| Correctness | Unique codes, bounded collision retries, explicit errors, behavior tests | Evidence exposes a correctness gap |
+| Reliability | Direct H2 lookups; data is lost on restart | Durable storage or datastore-outage behavior becomes a requirement |
+| Performance | Simple lookup by unique code; no cache | A baseline measurement or explicit exercise goal justifies BF-203 |
+| Input handling | Validate syntax and HTTP/HTTPS targets at creation | VAL-401 identifies additional controls needed for the intended deployment |
+| Abuse | Local prototype; no authentication or rate limiting | Public exposure is proposed; scope VAL-402/VAL-403 first |
+| Analytics | No fields or writes yet | AMB-301 defines counting and failure behavior |
+| Generation | Random Base62, DB uniqueness, bounded retry | BF-201 finds a reason to change it; a counter is not automatically safer |
 
-## Known limitation for this exercise (documented, not silently ignored)
-
-H2 in-memory persistence (see `docs/decisions/0002-persistence-choice.md`) means the "reliability
-under datastore failure" NFR is not truly testable end-to-end in this prototype — there's no
-separate datastore to simulate failing. This is called out explicitly rather than glossed over;
-a production deployment would need this proven against the real target datastore.
+H2 keeps setup simple but does not demonstrate durable production storage or external-database
+failure recovery. A cache, if added, needs explicit consistency and failure behavior; its
+presence alone does not establish availability. No production latency or scale target is
+promised without a workload and measurements.

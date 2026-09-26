@@ -29,6 +29,8 @@ survive caching being added.
 
 ## Acceptance Criteria
 
+- [ ] State the actual problem or exercise objective, current evidence, smallest useful change,
+      and why leaving the working implementation unchanged is insufficient
 - [ ] Written list of every file/class touching ID generation (service, repository, tests)
 - [ ] Written list of every test that would break or need updating due to BF-202/BF-203
 - [ ] Explicit statement of the redirect endpoint's current external contract (status codes,

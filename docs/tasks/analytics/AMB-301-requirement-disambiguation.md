@@ -26,8 +26,7 @@ engineering problem) applied to a genuinely underspecified ask.
 
 ## Candidate interpretations to evaluate (starting list — expand if others surface)
 
-1. **Simple click counter** — just `clickCount` on `ShortUrl`, already partially modeled in
-   `docs/architecture/02-data-model.md`.
+1. **Simple click counter** — a possible future `clickCount` on `ShortUrl`; no field is added yet.
 2. **Time-series clicks** — clicks per day/hour, enabling a trend view.
 3. **Rich per-click breakdown** — referrer, device/user-agent, geo, timestamp per click.
 4. Any combination/subset of the above, chosen deliberately rather than defaulting to "build
@@ -40,6 +39,8 @@ engineering problem) applied to a genuinely underspecified ask.
 - [ ] One interpretation chosen, with explicit rationale tied back to the original requirement
       text and the exercise's evaluation criteria (not just "easiest to build")
 - [ ] Scope explicitly bounded: what's included, what's deliberately excluded and why
+- [ ] Define what counts as a click, healthy-database accuracy, recording-failure behavior,
+      and whether recording is synchronous; do not assume a queue or cache is required
 - [ ] Decision recorded as a new file in `docs/decisions/`, linked from `00-index.md`
 
 ## AI Collaboration Plan

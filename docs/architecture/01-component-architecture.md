@@ -14,7 +14,7 @@
                                      │
                           ┌──────────▼───────────┐
                           │   service/            │  Business rules: code generation,
-                          │   (Domain logic)      │  expiry checks, analytics recording
+                          │   (Domain logic)      │  active checks; analytics only later
                           └──────────┬───────────┘
                                      │
                           ┌──────────▼───────────┐
@@ -36,7 +36,7 @@ this project's size — see `docs/conventions/package-structure.md`.
 | Package | Responsibility | Must NOT contain |
 |---|---|---|
 | `controller/` | HTTP concerns, request validation, DTO mapping | Business rules, direct repository access |
-| `service/` | Business rules (code generation, expiry, analytics logic) | HTTP-specific types, JPA annotations |
+| `service/` | Business rules (code generation, active checks; analytics later) | HTTP-specific types, JPA annotations |
 | `repository/` | Data access | Business logic |
 | `domain/` | JPA entities / core model | DTOs, HTTP concerns |
 | `dto/` | API request/response payloads | Persistence annotations |

@@ -27,6 +27,7 @@ to prove this with regression tests. If a contract change is genuinely required,
 
 ## Schema definitions
 
-Once implemented, request/response schemas will be captured as OpenAPI annotations directly in
-the controllers (springdoc-openapi), with the generated spec linked here rather than
-hand-duplicated in Markdown (to avoid the two drifting apart).
+Document the first working API with concise README examples and behavior tests. GF-108 may
+add generated OpenAPI documentation after the core works; it does not block the first demo.
+Finalize exact fields, limits, code length, and short-link base URL configuration in each task
+before implementation. Do not invent these contracts implicitly while coding.

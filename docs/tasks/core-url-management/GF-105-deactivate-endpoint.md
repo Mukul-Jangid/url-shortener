@@ -7,8 +7,8 @@
 | **Epic / Phase** | Phase 1 — Greenfield Core |
 | **Status** | Not Started |
 | **Priority** | Medium |
-| **Depends on** | GF-101 |
-| **Blocks** | GF-106, GF-107 |
+| **Depends on** | GF-104 |
+| **Blocks** | GF-107 |
 | **AI Work Log** | docs/ai-work-log/entries/GF-105.md |
 
 ## Summary

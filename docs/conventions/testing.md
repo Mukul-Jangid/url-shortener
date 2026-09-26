@@ -1,6 +1,9 @@
 # Testing Conventions
 
-- Unit tests for `service/` logic (mock repositories).
+- Write behavior tests in the task that adds or changes the behavior. GF-107 and BF-204 are
+  coverage checkpoints; they do not defer feature testing.
+- Unit tests for meaningful `service/` business rules (mock repositories); avoid duplicate
+  tests of trivial delegation when integration coverage already checks the behavior.
 - Integration tests (`@SpringBootTest` + `MockMvc` or `TestRestTemplate`) for controller-level
   behavior, using the H2 in-memory profile.
 - Concurrency-sensitive logic (e.g., click-count increments, `AMB-304`) gets an explicit

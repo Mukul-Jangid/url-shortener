@@ -2,8 +2,11 @@
 
 ## Status
 
-Phase 0 (project + guardrails scaffold) complete. No feature endpoints exist yet — see
-`docs/TASKS.md` for what's next and in what order.
+Application scaffold present; no feature endpoints yet. Incremental development guidelines are prepared for review before feature work. See [development guidelines](docs/conventions/development-workflow.md) and the
+[task board](docs/tasks/00-index.md). Build verification is tracked in SCAFFOLD-003: Maven is
+not installed in the inspected environment and no wrapper is present.
+
+Private repository: [Mukul-Jangid/url-shortener](https://github.com/Mukul-Jangid/url-shortener).
 
 ## Before you write any feature code
 
@@ -24,7 +27,7 @@ mvn spring-boot:run
 ```
 
 The app starts on `http://localhost:8080`. Health check: `http://localhost:8080/actuator/health`.
-H2 console (dev only): `http://localhost:8080/h2-console` (JDBC URL:
+H2 console (currently enabled in the default configuration; intended for local use): `http://localhost:8080/h2-console` (JDBC URL:
 `jdbc:h2:mem:urlshortener`, user `sa`, empty password).
 
 ## Test it
@@ -36,9 +39,9 @@ mvn test
 ## Known limitations (current state)
 
 - No feature endpoints yet (Phase 0 only) — this will be updated as Phase 1 lands.
-- H2 is in-memory: data does not persist across restarts (see `docs/DECISIONS.md` D-002).
+- H2 is in-memory: data does not persist across restarts (see [decision 0002](docs/decisions/0002-persistence-choice.md)).
 - No authentication/authorization layer (not in scope per current requirement normalization —
-  see `docs/TASKS.md` Phase 1 notes).
+  see [system scope](docs/architecture/00-overview.md)).
 
 ## Where things are documented
 

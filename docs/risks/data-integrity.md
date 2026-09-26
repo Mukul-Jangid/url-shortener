@@ -7,9 +7,9 @@
 - **Impact**: High — a collision that isn't handled could overwrite an existing mapping or fail
   a create request the caller expected to succeed.
 - **Mitigation**: DB-level uniqueness constraint on `code` + bounded retry in Phase 1
-  (`GF-102`). Eliminated as a structural concern once `BF-202` lands (counter-based scheme makes
-  collision impossible by construction, not just unlikely).
-- **Owning task**: `BF-202`
+  (`GF-102`), tested including concurrent inserts/constraint failures as applicable. Any later
+  generator change must also account for codes already stored; no automatic elimination claim.
+- **Owning tasks**: `GF-101`, `GF-102`; reassess in `BF-201`
 
 ## R-006: Race condition on click-count increment under concurrent redirects
 

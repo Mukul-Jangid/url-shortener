@@ -6,11 +6,11 @@ this table's Status column as tasks close risks out; detail lives in the categor
 
 | ID | Risk | Category | Likelihood | Impact | Status | Mitigating task |
 |---|---|---|---|---|---|---|
-| R-001 | Short-code collision on write causes silent overwrite/failed insert | [Data Integrity](data-integrity.md) | Medium | High | Open (interim, tracked) | BF-202 |
-| R-002 | Unbounded retry under high collision rate degrades write latency | [Performance/Scalability](performance-scalability.md) | Medium | Medium | Open (interim, tracked) | BF-202 |
-| R-003 | Sequential/guessable short codes allow enumeration | [Security](security.md) | Medium | Medium | Open | BF-202 |
-| R-004 | Open redirect via malicious scheme/target | [Security](security.md) | Medium | High | Open | VAL-403 |
-| R-005 | Redirect endpoint becomes a bottleneck under load | [Performance/Scalability](performance-scalability.md) | High (by design) | Medium | Open | BF-203, VAL-404 |
+| R-001 | Short-code collision on write causes silent overwrite/failed insert | [Data Integrity](data-integrity.md) | Medium | High | Open (interim, tracked) | GF-102; BF-201 review |
+| R-002 | Excessive collision retries degrade write latency | [Performance/Scalability](performance-scalability.md) | Medium | Medium | Open (interim, tracked) | GF-102; BF-201 review |
+| R-003 | Sequential/guessable short codes allow enumeration | [Security](security.md) | Medium | Medium | Open | GF-102; BF-201 review |
+| R-004 | Unsafe schemes and malicious destinations | [Security](security.md) | Medium | High | Open | GF-102/GF-106; VAL-403 review |
+| R-005 | Redirect endpoint becomes a bottleneck under load | [Performance/Scalability](performance-scalability.md) | Unknown until measured | Medium | Open | VAL-404; BF-203 if selected |
 | R-006 | Race condition on click-count increment | [Data Integrity](data-integrity.md) | Medium | Low-Medium | Open | AMB-304, AMB-305 |
 | R-007 | Unrestricted create endpoint enables spam/abuse | [Security](security.md) | Medium | Medium | Open | VAL-402 |
 | R-008 | Datastore unavailability takes down redirect path entirely | [Availability](availability.md) | Low (prototype) / Medium (prod) | High | Documented limitation, not implemented | — |
@@ -29,6 +29,6 @@ this table's Status column as tasks close risks out; detail lives in the categor
 
 ## Review cadence
 
-Revisited at the end of every phase in `docs/tasks/00-index.md`. New risks discovered mid-phase
+Revisited at the end of every iteration in `docs/tasks/00-index.md`. New risks discovered mid-phase
 are added immediately (new row here + entry in the relevant category file), not batched for
 later.

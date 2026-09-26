@@ -7,8 +7,8 @@
 | **Epic / Phase** | Phase 1 — Greenfield Core |
 | **Status** | Not Started |
 | **Priority** | High |
-| **Depends on** | SCAFFOLD-000 |
-| **Blocks** | GF-102, GF-103, GF-104, GF-105 |
+| **Depends on** | SCAFFOLD-003 |
+| **Blocks** | GF-106, GF-102 |
 | **AI Work Log** | docs/ai-work-log/entries/GF-101.md (open when work starts) |
 
 ## Summary
@@ -18,8 +18,8 @@ Phase 1 endpoint depends on.
 
 ## Description
 
-Per `docs/architecture/02-data-model.md`, implement the `ShortUrl` entity (`code`, `originalUrl`,
-`createdAt`, `active`, `clickCount`) and a `ShortUrlRepository` with at minimum a
+Per `docs/architecture/02-data-model.md`, implement the `ShortUrl` entity (`id`, `code`, `originalUrl`,
+`createdAt`, `active`; no analytics fields yet) and a `ShortUrlRepository` with at minimum a
 `findByCodeAndActiveTrue` lookup method, plus whatever uniqueness constraint on `code` the ID
 generation approach in `docs/decisions/0003-id-generation-strategy.md` requires.
 
@@ -28,8 +28,7 @@ generation approach in `docs/decisions/0003-id-generation-strategy.md` requires.
 - [ ] `ShortUrl` entity exists in `domain/` with fields matching `docs/architecture/02-data-model.md`
 - [ ] `code` column has a DB-level unique constraint
 - [ ] `ShortUrlRepository extends JpaRepository<ShortUrl, Long>` with a `findByCodeAndActiveTrue` method
-- [ ] Entity does not leak into any API response directly (enforced by not existing yet — future
-      tasks must map through `dto/`)
+- [ ] H2 repository tests verify persistence, unique-code enforcement, and active-only lookup
 - [ ] `docs/architecture/02-data-model.md` schema evolution log updated with this change
 
 ## Technical Notes / Constraints

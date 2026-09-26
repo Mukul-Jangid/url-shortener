@@ -1,20 +1,25 @@
-# Quality Gates
+# Quality gates
 
-Must pass before a task moves to `Done` in `docs/tasks/00-index.md`.
+Complete the applicable checks before moving work to In Review. Engineer acceptance is
+required for Done. Record exact commands and outcomes in the task work log.
 
-| Gate | Command / Check | Blocking? |
-|---|---|---|
-| Compile | `mvn -q compile` | Yes |
-| Unit + integration tests | `mvn -q test` | Yes |
-| Formatting | `mvn -q spotless:check` | Yes |
-| Manual security review | Checklist below, for changes touching a high-impact surface | Yes, for high-impact changes only |
-| Regression check | For brownfield tasks: existing tests for the touched module still pass with assertions unmodified (only setup/mocking may change) | Yes, for brownfield tasks |
-| Docs sync | Architecture/decisions/risks docs updated if the task changed system shape | Yes |
+| Change | Required checks |
+|---|---|
+| Java, application configuration, dependencies, or build | `mvn -q compile`, `mvn -q test`, `mvn -q spotless:check` |
+| Documentation only | Check local links, board/task consistency, and claims against the actual repository; `git diff --check` |
+| Brownfield implementation | Existing public-contract tests still pass; add tests for the changed behavior |
+| High-impact implementation | Applicable automated checks plus engineer review before merge/acceptance |
 
-## Manual security review checklist (high-impact changes only)
+Use `./mvnw` instead of `mvn` once a wrapper is added. A missing tool or failed command is a
+recorded blocker, not a pass. No Java build is required for documentation-only changes.
 
-- [ ] Does this change affect what URLs/schemes are accepted as redirect targets?
-- [ ] Does this change affect uniqueness/predictability of short codes?
-- [ ] Does this change expose any new data in an API response that wasn't there before?
-- [ ] Does this change introduce a new dependency, and if so, is it justified in the work log?
-- [ ] Does this change alter rate-limiting or abuse-control behavior?
+Update architecture, decisions, and risks in the task that changes them. Later checkpoints
+verify this happened. Do not alter public-contract assertions merely to make a refactor pass;
+internal implementation tests may change with a documented reason.
+
+## High-impact review
+
+Use the list in [AI usage rules](ai-usage-rules.md). Explain which surfaces changed, their
+failure cases, and the evidence for correctness. Consider accepted URL targets, code uniqueness
+and predictability, schema changes, exposed data, dependency justification, and abuse controls
+where relevant. An agent prepares this evidence before requesting engineer review.

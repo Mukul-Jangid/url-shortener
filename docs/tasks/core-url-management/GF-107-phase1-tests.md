@@ -13,14 +13,15 @@
 
 ## Summary
 
-Closes out Phase 1's testing gap: this task is a checkpoint, not new feature work — confirms
-every Phase 1 endpoint has both unit (service-level) and integration (controller-level) coverage
+Audits Phase 1 testing: this task is a checkpoint, not new feature work — confirms
+Phase 1 endpoints have integration coverage and meaningful service rules have unit coverage
 per `docs/conventions/testing.md`, and that coverage isn't just happy-path.
 
 ## Acceptance Criteria
 
 - [ ] Every Phase 1 endpoint has at least one happy-path and one error-path integration test
-- [ ] `service/` layer has unit tests with repository mocked
+- [ ] Meaningful service business rules have focused unit tests; do not duplicate trivial
+      delegation already covered by integration tests
 - [ ] Collision-retry-bound behavior (GF-102) has a dedicated test
 - [ ] Idempotency of deactivation (GF-105) has a dedicated test
 - [ ] `mvn test` is green with no skipped/ignored tests

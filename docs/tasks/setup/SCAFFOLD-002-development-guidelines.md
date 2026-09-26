@@ -4,7 +4,7 @@
 |---|---|
 | **Type** | Task |
 | **Module** | Setup and guidelines |
-| **Status** | In Progress |
+| **Status** | In Review |
 | **Depends on** | Existing scaffold and documentation |
 | **AI Work Log** | [SCAFFOLD-002](../../ai-work-log/entries/SCAFFOLD-002.md) |
 
@@ -20,12 +20,12 @@ implementation, dependency installation, or assertion that the scaffold has pass
 
 ## Acceptance Criteria
 
-- [ ] Agent entry point links to current guidelines and task board.
-- [ ] Guidelines explain readiness, iteration scope, verification, review, and decision records.
-- [ ] First working flow and next setup task are explicit; later complexity is conditional.
-- [ ] Immediate task dependencies and scope agree with the guidelines.
-- [ ] Known documentation contradictions are corrected without fabricating historical approval.
-- [ ] Documentation links and task-board consistency are checked.
+- [x] Agent entry point links to current guidelines and task board.
+- [x] Guidelines explain readiness, iteration scope, verification, review, and decision records.
+- [x] First working flow and next setup task are explicit; later complexity is conditional.
+- [x] Immediate task dependencies and scope agree with the guidelines.
+- [x] Known documentation contradictions are corrected without fabricating historical approval.
+- [x] Documentation links and task-board consistency are checked.
 
 ## AI Collaboration Plan
 
@@ -39,4 +39,12 @@ acceptance is recorded under the existing review policy.
 
 ## Dev Notes
 
-Pending documentation validation.
+Added an agent entry point and development workflow; recorded ADR 0005 without rewriting
+accepted decision history. Reordered the first flow, moved basic validation before endpoints,
+kept tests/docs in their feature tasks, removed premature analytics fields and mandatory cache
+dependencies, and corrected unsupported risk claims. Historical Closed/Done labels were
+corrected to match pending review. GitHub setup was completed as SCAFFOLD-004 at the user's
+request before resuming this task. Validation passed: 71 local Markdown links across 68 documents resolve; all 27 board
+entries match task titles/statuses/dependencies; the dependency graph has no cycles;
+`git diff --check` passes. No source or build configuration changed. Maven tests were not
+run for this documentation-only task. Engineer acceptance remains pending.

@@ -6,6 +6,7 @@ not merged as-is.
 
 | File | Covers |
 |---|---|
+| [development-workflow.md](development-workflow.md) | Start here: small iterations, task readiness, decisions, review |
 | `package-structure.md` | Layering rules, package responsibilities |
 | `naming.md` | Class/endpoint/test naming conventions |
 | `error-handling.md` | Exception design, `ProblemDetail` usage |

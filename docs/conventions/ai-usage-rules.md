@@ -15,6 +15,9 @@ Binding — see `docs/decisions/0004-ai-usage-boundaries.md` for the rationale b
    - Rate-limiting/abuse-control logic
 4. New third-party dependencies suggested by AI require a one-line justification in the
    corresponding work-log entry (why it's needed, not just that it works).
-5. The engineer, not the AI, decides when a task is `Done` in `docs/tasks/`.
+5. The engineer, not the AI, decides when a task is `Done` in `docs/tasks/`. Agents complete
+   authorized implementation, tests, and documentation and then move it to `In Review`.
+   The explicit approval in rule 3 is required before merge/acceptance, not before routine
+   reads, edits, or checks. Do not repeatedly request permission already given.
 6. If AI output can't be explained by the engineer in their own words, it isn't accepted as-is —
    either it's understood well enough to take ownership of, or it's reworked/rejected.

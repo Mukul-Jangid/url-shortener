@@ -7,38 +7,39 @@
 | **Epic / Phase** | Phase 3 — Ambiguous Requirement |
 | **Status** | Not Started |
 | **Priority** | High |
-| **Depends on** | AMB-302, BF-203 |
+| **Depends on** | AMB-302, GF-103 |
 | **Blocks** | AMB-305 |
 | **AI Work Log** | docs/ai-work-log/entries/AMB-304.md |
 
 ## Summary
 
-Wire click recording into the redirect hot path (`GET /{code}`, already cached per BF-203)
-without introducing lost updates under concurrent traffic (R-006).
+Wire click recording into the existing redirect path without lost updates under healthy
+concurrent traffic (R-006). Caching is not a prerequisite. Refine this task after AMB-301;
+the criteria below assume a simple counter and must match the chosen scope before coding.
 
 ## Impact Analysis
 
-- Modules/files affected: `service` layer for redirect lookup (touches the same method BF-203
-  optimized — sequencing matters, see `docs/tasks/00-index.md`)
-- Existing behavior that must not change: redirect status codes/headers; cache behavior from BF-203
+- Modules/files affected: existing redirect service and chosen analytics storage
+- Existing behavior that must not change: redirect status codes/headers; cache behavior only
+  if a cache actually exists by then
 
 ## Acceptance Criteria
 
 - [ ] Click recording uses an atomic DB-level increment (e.g., `UPDATE ... SET count = count +
       1`), not a read-modify-write in application code
-- [ ] Recording a click does not add noticeable latency to the redirect response (measured, not
-      assumed — coordinate with VAL-404)
+- [ ] Record the observed latency impact and AMB-301's chosen recording approach; no
+      asynchronous infrastructure or undefined "no noticeable latency" requirement
 - [ ] Recording failure (e.g., transient DB error) does not fail the redirect itself — the
       redirect succeeds even if analytics recording is best-effort (explicit trade-off, recorded
       in Dev Notes)
 
 ## AI Collaboration Plan
 
-- **Intent**: Add atomic, non-blocking-to-the-redirect click recording.
+- **Intent**: Add correct click recording using AMB-301's chosen failure and timing behavior.
 - **Constraints**: Must not turn the redirect into a read-modify-write on the same row it's
   redirecting from; must not fail the redirect if recording fails.
 - **Acceptance criteria**: as listed above.
-- **Technical context**: BF-203 (redirect path), AMB-302 (schema).
+- **Technical context**: GF-103 (redirect path), AMB-301 (scope), AMB-302 (schema); BF-203 only if implemented.
 
 ## Definition of Done
 

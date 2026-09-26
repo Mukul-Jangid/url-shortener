@@ -13,8 +13,8 @@
 
 ## Summary
 
-Bring the root `README.md` up to date with the real, final API surface, setup steps, and known
-limitations — the SCAFFOLD-000 version was necessarily provisional (no endpoints existed yet).
+Audit README setup, examples, and limitations against the implemented API. Each earlier
+feature task already updates its runnable examples; this is a completeness checkpoint.
 
 ## Acceptance Criteria
 

@@ -1,4 +1,4 @@
-# [BF-202] Refactor: counter-based Base62 ID generation
+# [BF-202] Refine ID generation when justified
 
 | Field | Value |
 |---|---|
@@ -13,15 +13,15 @@
 
 ## Summary
 
-Replace the naive random-retry generator (`docs/decisions/0003-id-generation-strategy.md`) with
-a counter-based scheme, removing unbounded-retry risk (R-002) and reducing enumeration
-guessability (R-003). **High-impact task — requires Reviewer Decision: APPROVED.**
+Candidate generator improvement, selected only after BF-201 justifies a change. The initial
+generator already has bounded retries. A counter is one option, not an automatic security
+improvement. **High-impact task — requires Reviewer Decision: APPROVED.**
 
 ## Description
 
-Design a monotonic-counter-backed generator (e.g., DB sequence or an atomic counter table)
-encoded to Base62, with enough obfuscation (e.g., bit-mixing or a fixed offset) that codes aren't
-trivially sequential-looking to an external caller, without reintroducing collision-retry risk.
+Before implementation, choose the strategy from BF-201 evidence and record it in a new ADR.
+Compare keeping bounded random generation with alternatives. Base62 encoding or a fixed offset
+does not establish unpredictability. Account for codes already stored before any migration.
 
 ## Impact Analysis
 
@@ -35,16 +35,16 @@ trivially sequential-looking to an external caller, without reintroducing collis
 
 ## Acceptance Criteria
 
-- [ ] New generator has no retry loop (uniqueness guaranteed by construction, not by chance)
-- [ ] Codes are not trivially sequential/guessable (documented reasoning, not just "trust me")
+- [ ] Finalize measurable acceptance criteria for the selected improvement before coding
+- [ ] Existing mappings remain usable; uniqueness and predictability trade-offs are documented
+      and tested as applicable; do not assume migration cannot collide with existing codes
 - [ ] `POST /api/v1/urls` and `GET /{code}` external contracts unchanged (verified by BF-204)
 - [ ] `docs/decisions/0003-id-generation-strategy.md` marked superseded; new decision file added
 
 ## AI Collaboration Plan
 
-- **Intent**: Replace the generator internals only; external API contract must not change.
-- **Constraints**: No change to `POST`/`GET` request/response shapes; must not reintroduce a
-  retry loop; must be justified against R-003 (enumeration).
+- **Intent**: Implement the generator improvement chosen after BF-201; preserve the public contract.
+- **Constraints**: No change to `POST`/`GET` request/response shapes; preserve uniqueness and bounded completion; evaluate R-003 (enumeration).
 - **Acceptance criteria**: as listed above.
 - **Technical context**: BF-201's impact map, `GF-101`/`GF-102`.
 

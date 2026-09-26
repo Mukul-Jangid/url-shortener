@@ -7,8 +7,8 @@
 | **Epic / Phase** | Phase 1 — Greenfield Core |
 | **Status** | Not Started |
 | **Priority** | High |
-| **Depends on** | GF-101 |
-| **Blocks** | GF-106, GF-107 |
+| **Depends on** | GF-102 |
+| **Blocks** | GF-104, GF-107 |
 | **AI Work Log** | docs/ai-work-log/entries/GF-103.md |
 
 ## Summary
@@ -20,8 +20,7 @@ The public redirect endpoint — the highest-traffic path in the system (see
 
 Given a short code, look up the active `ShortUrl` and issue an HTTP redirect (302) to
 `originalUrl`. Unknown or deactivated codes return `404`. No caching yet — that's `BF-203`; this
-task is a straightforward DB-lookup-then-redirect, kept deliberately simple so `BF-203`'s
-before/after is a clean, demonstrable brownfield diff.
+task is a straightforward database lookup and redirect, sufficient for the first working flow.
 
 ## Acceptance Criteria
 
@@ -32,8 +31,8 @@ before/after is a clean, demonstrable brownfield diff.
 
 ## Technical Notes / Constraints
 
-- Keep this implementation intentionally simple/uncached — it is the deliberate "before" state
-  for the brownfield caching task.
+- Keep this implementation simple and uncached. A later cache requires a stated need.
+- Reuse GF-106 errors; do not add per-controller business exception handling.
 
 ## AI Collaboration Plan
 
@@ -47,6 +46,9 @@ before/after is a clean, demonstrable brownfield diff.
 
 - [ ] Code implemented per acceptance criteria
 - [ ] Tests written and passing (active code, unknown code, deactivated code)
+- [ ] Create then redirect integration test passes, checking the Location header without
+      fetching the external destination
+- [ ] README demonstrates the working create-and-redirect flow; invalid-input example verified
 - [ ] Quality gates passed
 - [ ] AI Work Log entry closed
 
@@ -56,4 +58,4 @@ before/after is a clean, demonstrable brownfield diff.
 
 ## Related
 
-- Risk: R-005 (docs/risks/performance-scalability.md) — flagged here, mitigated later in BF-203
+- Risk: R-005 (docs/risks/performance-scalability.md) — unmeasured; reassess before selecting BF-203

@@ -18,8 +18,9 @@ happy path, per `docs/conventions/testing.md`.
 
 ## Acceptance Criteria
 
-- [ ] Test fires N concurrent redirect requests for the same code and asserts the final click
-      count equals exactly N (no lost updates)
+- [ ] With healthy storage and a known initial count, N concurrent successful redirects
+      increase the count by exactly N; test injected recording failures separately under
+      AMB-301's chosen failure policy
 - [ ] Test confirms redirect responses all succeed even under concurrent load
 
 ## AI Collaboration Plan

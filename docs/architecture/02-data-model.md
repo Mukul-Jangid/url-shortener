@@ -10,10 +10,12 @@ why (link the deviation to the task's dev notes rather than re-explaining it her
 |---|---|---|
 | `id` | `Long` (PK) | Surrogate key |
 | `code` | `String`, unique, indexed | The short code (see `docs/decisions/0003-id-generation-strategy.md`) |
-| `originalUrl` | `String` | Validated on write (see `tasks/validation-hardening/VAL-403-*.md`) |
+| `originalUrl` | `String` | Basic syntax and HTTP/HTTPS validation in GF-102/GF-106; later policy review in VAL-403 |
 | `createdAt` | `Instant` | |
 | `active` | `boolean` | Soft-delete flag for `DELETE /api/v1/urls/{code}` |
-| `clickCount` | `long` | Only if analytics scope (AMB-301) settles on simple counting; may move to a separate table if a richer breakdown is chosen |
+
+Analytics fields are excluded from GF-101. AMB-301 decides their scope and AMB-302 adds the
+chosen model later; do not add a placeholder counter now.
 
 ## Schema evolution log
 
