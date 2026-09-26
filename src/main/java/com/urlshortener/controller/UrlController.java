@@ -96,6 +96,39 @@ public class UrlController {
   }
 
   @Operation(
+      summary = "Get click analytics for a short URL",
+      description =
+          "Retrieves total redirect click count and last access timestamp for a short link code.")
+  @ApiResponses(
+      value = {
+        @ApiResponse(
+            responseCode = "200",
+            description = "Analytics retrieved successfully",
+            content =
+                @Content(
+                    mediaType = "application/json",
+                    schema =
+                        @Schema(
+                            implementation =
+                                com.urlshortener.dto.ShortUrlAnalyticsResponse.class))),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Short URL code not found",
+            content =
+                @Content(
+                    mediaType = "application/problem+json",
+                    schema = @Schema(implementation = ProblemDetail.class)))
+      })
+  @GetMapping("/{code}/analytics")
+  public ResponseEntity<com.urlshortener.dto.ShortUrlAnalyticsResponse> getAnalytics(
+      @Parameter(description = "7-character short code identifier", example = "abc1234")
+          @PathVariable("code")
+          String code) {
+    com.urlshortener.dto.ShortUrlAnalyticsResponse response = service.getAnalytics(code);
+    return ResponseEntity.ok(response);
+  }
+
+  @Operation(
       summary = "Deactivate a short URL",
       description =
           "Soft-deactivates an existing short code setting active=false (idempotent 204 response).")
