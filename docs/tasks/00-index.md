@@ -51,11 +51,11 @@ exist but its engineer review is pending. Their original work logs remain unchan
 | [BF-203](short-code-refactoring/BF-203-caching-layer.md) | Caching layer in front of redirect lookup | Later candidate | Not Started | BF-201 |
 | [BF-204](short-code-refactoring/BF-204-regression-tests.md) | Regression tests: Phase 1 contract unchanged | Later candidate | Not Started | BF-202, BF-203 |
 | [BF-205](short-code-refactoring/BF-205-update-docs.md) | Update architecture/decisions docs post-refactor | Later candidate | Not Started | BF-202 |
-| [AMB-301](analytics/AMB-301-requirement-disambiguation.md) | Requirement disambiguation: "add analytics" | Later candidate | Not Started | Phase 1 complete |
-| [AMB-302](analytics/AMB-302-analytics-data-model.md) | Data model for chosen analytics scope | Later candidate | Not Started (blocked pending AMB-301 scope decision) | AMB-301 |
-| [AMB-303](analytics/AMB-303-analytics-endpoint.md) | `GET /api/v1/urls/{code}/analytics` endpoint | Later candidate | Not Started (blocked pending AMB-301/AMB-302) | AMB-302 |
-| [AMB-304](analytics/AMB-304-concurrency-safe-click-recording.md) | Concurrency-safe click recording | Later candidate | Not Started | AMB-302, GF-103 |
-| [AMB-305](analytics/AMB-305-concurrency-tests.md) | Concurrency correctness tests | Later candidate | Not Started | AMB-304 |
+| [AMB-301](analytics/AMB-301-requirement-disambiguation.md) | Requirement disambiguation: "add analytics" | 3 — Analytics | In Review | Phase 1 complete |
+| [AMB-302](analytics/AMB-302-analytics-data-model.md) | Data model for chosen analytics scope | 3 — Analytics | In Review | AMB-301 |
+| [AMB-303](analytics/AMB-303-analytics-endpoint.md) | `GET /api/v1/urls/{code}/analytics` endpoint | 3 — Analytics | In Review | AMB-302 |
+| [AMB-304](analytics/AMB-304-concurrency-safe-click-recording.md) | Concurrency-safe click recording | 3 — Analytics | In Review | AMB-302, GF-103 |
+| [AMB-305](analytics/AMB-305-concurrency-tests.md) | Concurrency correctness tests | 3 — Analytics | In Review | AMB-304 |
 | [VAL-401](validation-hardening/VAL-401-threat-risk-pass.md) | Threat/risk pass (formalize risk register) | Later candidate | Not Started | Phase 1 |
 | [VAL-402](validation-hardening/VAL-402-rate-limiting.md) | Rate limiting on create endpoint | Later candidate | Not Started | VAL-401 |
 | [VAL-403](validation-hardening/VAL-403-redirect-target-validation.md) | Review additional destination policy | Later candidate | Not Started | VAL-401 |

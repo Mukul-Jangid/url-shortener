@@ -154,4 +154,33 @@ class ShortUrlServiceTest {
         com.urlshortener.exception.UrlNotFoundException.class,
         () -> service.deactivateShortUrl("missing"));
   }
+
+  @Test
+  void getAnalytics_existingCode_returnsAnalyticsResponse() {
+    ShortUrl shortUrl =
+        new ShortUrl(
+            "code123",
+            "https://example.com",
+            java.time.Instant.now(),
+            true,
+            15L,
+            java.time.Instant.now());
+    when(repository.findByCode("code123")).thenReturn(java.util.Optional.of(shortUrl));
+
+    com.urlshortener.dto.ShortUrlAnalyticsResponse response = service.getAnalytics("code123");
+
+    assertNotNull(response);
+    assertEquals("code123", response.getCode());
+    assertEquals(15L, response.getClickCount());
+    assertTrue(response.isActive());
+  }
+
+  @Test
+  void getAnalytics_unknownCode_throwsUrlNotFoundException() {
+    when(repository.findByCode("missing")).thenReturn(java.util.Optional.empty());
+
+    assertThrows(
+        com.urlshortener.exception.UrlNotFoundException.class,
+        () -> service.getAnalytics("missing"));
+  }
 }

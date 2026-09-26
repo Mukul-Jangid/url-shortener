@@ -140,6 +140,29 @@ HTTP/1.1 204 No Content
 
 ---
 
+### 5. Get Short URL Click Analytics (`GET /api/v1/urls/{code}/analytics`)
+Retrieves click analytics metrics for a short code, including total successful redirects executed and the timestamp of the most recent redirect access.
+
+**cURL Request:**
+```bash
+curl http://localhost:8080/api/v1/urls/abc1234/analytics
+```
+
+**Success Response (`200 OK`):**
+```json
+{
+  "code": "abc1234",
+  "shortUrl": "http://localhost:8080/abc1234",
+  "originalUrl": "https://example.com/very/long/path/to/resource",
+  "clickCount": 42,
+  "createdAt": "2026-09-26T21:40:00Z",
+  "lastAccessedAt": "2026-09-26T22:30:00Z",
+  "active": true
+}
+```
+
+---
+
 ## Testing & Quality Gates
 
 Run all unit tests, integration tests, and Spotless code formatting checks:
