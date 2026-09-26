@@ -43,5 +43,6 @@ See `docs/conventions/ai-usage-rules.md` — reproduced here for convenience:
 | GF-106 | [entries/GF-106.md](entries/GF-106.md) | Open (Input validation & centralized error handling) |
 | GF-102 | [entries/GF-102.md](entries/GF-102.md) | Open (`POST /api/v1/urls` Create Short URL API) |
 | GF-108 | [entries/GF-108.md](entries/GF-108.md) | Open (OpenAPI & Swagger UI integration) |
+| GF-103 | [entries/GF-103.md](entries/GF-103.md) | Open (`GET /{code}` Redirect Endpoint) |
 
 *(new rows added here as tasks start — keep this table in sync with `entries/`)*

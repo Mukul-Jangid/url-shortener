@@ -5,6 +5,7 @@ import com.urlshortener.dto.CreateShortUrlRequest;
 import com.urlshortener.dto.ShortUrlResponse;
 import com.urlshortener.exception.CodeGenerationException;
 import com.urlshortener.exception.InvalidUrlException;
+import com.urlshortener.exception.UrlNotFoundException;
 import com.urlshortener.repository.ShortUrlRepository;
 import java.net.URI;
 import org.slf4j.Logger;
@@ -36,6 +37,17 @@ public class ShortUrlService {
     this.repository = repository;
     this.codeGenerator = codeGenerator;
     this.baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
+  }
+
+  @Transactional(readOnly = true)
+  public String getOriginalUrl(String code) {
+    if (code == null || code.trim().isEmpty()) {
+      throw new UrlNotFoundException("Short code must not be blank");
+    }
+    return repository
+        .findByCodeAndActiveTrue(code.trim())
+        .map(ShortUrl::getOriginalUrl)
+        .orElseThrow(() -> new UrlNotFoundException(code));
   }
 
   @Transactional

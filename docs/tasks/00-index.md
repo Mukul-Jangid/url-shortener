@@ -41,7 +41,7 @@ exist but its engineer review is pending. Their original work logs remain unchan
 | [GF-101](core-url-management/GF-101-short-url-entity-and-repository.md) | `ShortUrl` domain entity + repository | 1 — Create and redirect | In Review | SCAFFOLD-003 |
 | [GF-106](core-url-management/GF-106-validation-and-error-handling.md) | Input validation + centralized error handling | 1 — Create and redirect | In Review | GF-101 |
 | [GF-102](core-url-management/GF-102-create-short-url-api.md) | `POST /api/v1/urls` — create short URL | 1 — Create and redirect | In Review | GF-101, GF-106 |
-| [GF-103](core-url-management/GF-103-redirect-endpoint.md) | `GET /{code}` — redirect endpoint | 1 — Create and redirect | Not Started | GF-102 |
+| [GF-103](core-url-management/GF-103-redirect-endpoint.md) | `GET /{code}` — redirect endpoint | 1 — Create and redirect | In Review | GF-102 |
 | [GF-104](core-url-management/GF-104-metadata-lookup.md) | `GET /api/v1/urls/{code}` — metadata lookup | 2 — Manage links | Not Started | GF-103 |
 | [GF-105](core-url-management/GF-105-deactivate-endpoint.md) | `DELETE /api/v1/urls/{code}` — deactivate | 2 — Manage links | Not Started | GF-104 |
 | [GF-107](core-url-management/GF-107-phase1-tests.md) | Unit + integration tests, Phase 1 | 2 — Manage links | Not Started | GF-102, GF-103, GF-104, GF-105, GF-106 |

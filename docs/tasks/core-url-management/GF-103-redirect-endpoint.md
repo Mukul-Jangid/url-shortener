@@ -5,7 +5,7 @@
 | **Type** | Story |
 | **Module** | Core URL Management |
 | **Epic / Phase** | Phase 1 — Greenfield Core |
-| **Status** | Not Started |
+| **Status** | In Review |
 | **Priority** | High |
 | **Depends on** | GF-102 |
 | **Blocks** | GF-104, GF-107 |
@@ -24,9 +24,9 @@ task is a straightforward database lookup and redirect, sufficient for the first
 
 ## Acceptance Criteria
 
-- [ ] `GET /{code}` returns `302` with `Location` header set to `originalUrl` for an active code
-- [ ] Returns `404` for unknown or deactivated codes
-- [ ] Does not increment click count in this task (analytics recording is `AMB-304`, sequenced
+- [x] `GET /{code}` returns `302` with `Location` header set to `originalUrl` for an active code
+- [x] Returns `404` for unknown or deactivated codes
+- [x] Does not increment click count in this task (analytics recording is `AMB-304`, sequenced
       later on purpose — see `docs/tasks/00-index.md` sequencing rationale)
 
 ## Technical Notes / Constraints
@@ -44,13 +44,13 @@ task is a straightforward database lookup and redirect, sufficient for the first
 
 ## Definition of Done
 
-- [ ] Code implemented per acceptance criteria
-- [ ] Tests written and passing (active code, unknown code, deactivated code)
-- [ ] Create then redirect integration test passes, checking the Location header without
+- [x] Code implemented per acceptance criteria
+- [x] Tests written and passing (active code, unknown code, deactivated code)
+- [x] Create then redirect integration test passes, checking the Location header without
       fetching the external destination
-- [ ] README demonstrates the working create-and-redirect flow; invalid-input example verified
-- [ ] Quality gates passed
-- [ ] AI Work Log entry closed
+- [x] README demonstrates the working create-and-redirect flow; invalid-input example verified
+- [x] Quality gates passed
+- [x] AI Work Log entry closed
 
 ## Dev Notes
 

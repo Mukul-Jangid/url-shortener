@@ -81,4 +81,22 @@ class ShortUrlServiceTest {
     assertThrows(CodeGenerationException.class, () -> service.createShortUrl(request));
     verify(codeGenerator, times(5)).generateCode();
   }
+
+  @Test
+  void getOriginalUrl_activeCode_returnsOriginalUrl() {
+    ShortUrl shortUrl = new ShortUrl("active1", "https://example.com/target");
+    when(repository.findByCodeAndActiveTrue("active1")).thenReturn(java.util.Optional.of(shortUrl));
+
+    String originalUrl = service.getOriginalUrl("active1");
+    assertEquals("https://example.com/target", originalUrl);
+  }
+
+  @Test
+  void getOriginalUrl_unknownOrInactiveCode_throwsUrlNotFoundException() {
+    when(repository.findByCodeAndActiveTrue("unknown")).thenReturn(java.util.Optional.empty());
+
+    assertThrows(
+        com.urlshortener.exception.UrlNotFoundException.class,
+        () -> service.getOriginalUrl("unknown"));
+  }
 }
