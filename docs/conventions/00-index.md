@@ -13,6 +13,7 @@ not merged as-is.
 | `ai-usage-rules.md` | Binding rules for how AI is used on this project (see also `docs/decisions/0004-*.md`) |
 | `quality-gates.md` | What must pass before a task can move to `Done` |
 | `testing.md` | Test types, conventions, concurrency-test expectations |
-| `logging.md` | Logging format, what not to log |
+| `logging.md` | Logging level standards, SLF4J rules, and PII/security rules |
+| `metrics.md` | Micrometer Actuator metrics, naming standards, and cardinality protection |
 | `commit-hygiene.md` | Commit message conventions tying commits back to tasks and AI work log entries |
 | `git-workflow.md` | Branching strategy, branch naming conventions, and merge lifecycle |

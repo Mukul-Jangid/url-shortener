@@ -39,8 +39,8 @@ AI-assisted: see docs/ai-work-log/entries/<TASK-ID>.md
 
 ## 4. Key Rules
 
-* **Pre-Development Plan Required**: Never begin coding without first presenting and discussing the implementation plan.
-* **Pre-Commit Developer Approval Required**: The AI agent must never execute `git commit` or `git push` without explicit developer confirmation after local verification.
+* **Pre-Development Plan Required**: Never begin coding without first presenting and discussing the implementation plan with the developer.
+* **STRICT RULE — NO AUTOMATIC COMMITS OR PUSHES**: The AI agent MUST NOT execute `git commit` or `git push` under any circumstances without first presenting the local changes/diff to the developer and receiving explicit approval.
 * **One Task per Feature Branch**: Never mix multiple unrelated tasks into a single branch.
 * **No Feature Code on Docs Branches**: Do not write application feature code directly on `docs/` branches. Keep documentation and setup branches strictly focused on docs.
 
