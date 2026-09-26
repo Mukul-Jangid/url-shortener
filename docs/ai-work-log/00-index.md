@@ -37,6 +37,6 @@ See `docs/conventions/ai-usage-rules.md` — reproduced here for convenience:
 | SCAFFOLD-000 | [entries/SCAFFOLD-000.md](entries/SCAFFOLD-000.md) | Closed |
 | SCAFFOLD-001 | [entries/SCAFFOLD-001.md](entries/SCAFFOLD-001.md) | Closed (docs restructuring) |
 | SCAFFOLD-002 | [entries/SCAFFOLD-002.md](entries/SCAFFOLD-002.md) | Open (guidelines in progress) |
-| SCAFFOLD-004 | [entries/SCAFFOLD-004.md](entries/SCAFFOLD-004.md) | Open (repository setup) |
+| SCAFFOLD-004 | [entries/SCAFFOLD-004.md](entries/SCAFFOLD-004.md) | Open (setup verified; engineer review pending) |
 
 *(new rows added here as tasks start — keep this table in sync with `entries/`)*

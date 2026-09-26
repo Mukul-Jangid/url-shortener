@@ -4,7 +4,7 @@
 |---|---|
 | **Type** | Task |
 | **Module** | Setup |
-| **Status** | In Progress |
+| **Status** | In Review |
 | **Depends on** | GitHub account authentication |
 | **AI Work Log** | [SCAFFOLD-004](../../ai-work-log/entries/SCAFFOLD-004.md) |
 
@@ -16,9 +16,9 @@ requested on 2026-09-26. Use `url-shortener` and private visibility unless direc
 ## Acceptance Criteria
 
 - [x] Local repository initialized with `main` as its branch.
-- [ ] GitHub account authenticated and repository created.
-- [ ] Project snapshot committed, pushed, and linked to `origin/main`.
-- [ ] Remote URL, visibility, and branch synchronization verified.
+- [x] GitHub account authenticated and repository created.
+- [x] Project snapshot committed, pushed, and linked to `origin/main`.
+- [x] Remote URL, visibility, and branch synchronization verified.
 
 ## Scope and verification
 
@@ -30,9 +30,13 @@ repository metadata, local status, and remote branch hash to verify setup.
 
 Git was available with the user's name and email configured. GitHub CLI was absent; installed
 the official Linux release to `~/.local/bin/gh` and verified its release checksum. Browser-based
-device authentication is required to connect the user's account. Guidelines work in
+device authentication completed for `Mukul-Jangid`. Guidelines work in
 SCAFFOLD-002 is still in progress and will resume after repository setup.
 
 ## Definition of Done
 
 All acceptance criteria verified and engineer acceptance recorded under the existing policy.
+
+Repository: https://github.com/Mukul-Jangid/url-shortener (private). Initial snapshot
+`213bc66` was pushed to `main`; `origin/main` tracks the same commit. Remote visibility,
+default branch, and branch hashes were checked; the working tree was clean.

@@ -22,7 +22,7 @@ file is the source of truth for "what's the current state of everything."
 | SCAFFOLD-000 | Project + guardrails scaffold | — | Done | — |
 | SCAFFOLD-002 | Establish incremental development guidelines | setup | In Progress | Existing scaffold |
 | SCAFFOLD-003 | Verify scaffold build and health check | setup | Not Started | SCAFFOLD-002 |
-| SCAFFOLD-004 | Set up local and GitHub repository | setup | In Progress | GitHub authentication |
+| SCAFFOLD-004 | Set up local and GitHub repository | setup | In Review | GitHub authentication |
 | GF-101 | `ShortUrl` domain entity + repository | core-url-management | Not Started | SCAFFOLD-000 |
 | GF-102 | `POST /api/v1/urls` — create short URL | core-url-management | Not Started | GF-101 |
 | GF-103 | `GET /{code}` — redirect endpoint | core-url-management | Not Started | GF-101 |
