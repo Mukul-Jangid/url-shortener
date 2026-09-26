@@ -21,5 +21,6 @@ Use `template.md` for every new one.
 | [0004](0004-ai-usage-boundaries.md) | AI usage boundaries for this project | Accepted | 2026-09-26 | — |
 | [0005](0005-incremental-development.md) | Build in small working iterations | Accepted (user direction) | 2026-09-26 | Partially supersedes 0003 |
 | [0006](0006-java-21.md) | Use Java 21 | Accepted (user request) | 2026-09-26 | Java version in 0001 |
+| [0007](0007-analytics-scope-and-data-model.md) | Atomic counter analytics scope and data model | Accepted | 2026-09-26 | — |
 
 *(New rows are added here at the same time a new decision file is created — never after the fact.)*
