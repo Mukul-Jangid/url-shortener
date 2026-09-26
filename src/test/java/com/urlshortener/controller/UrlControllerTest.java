@@ -107,4 +107,30 @@ class UrlControllerTest {
         .andExpect(jsonPath("$.title").value("Short URL Not Found"))
         .andExpect(jsonPath("$.detail").value("Short URL not found or inactive for code: missing"));
   }
+
+  @Test
+  void deactivateShortUrl_existingCode_returns204NoContent() throws Exception {
+    org.mockito.Mockito.doNothing().when(service).deactivateShortUrl("deact12");
+
+    mockMvc
+        .perform(
+            org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete(
+                "/api/v1/urls/deact12"))
+        .andExpect(status().isNoContent());
+  }
+
+  @Test
+  void deactivateShortUrl_unknownCode_returns404NotFoundProblemDetail() throws Exception {
+    org.mockito.Mockito.doThrow(new UrlNotFoundException("missing"))
+        .when(service)
+        .deactivateShortUrl("missing");
+
+    mockMvc
+        .perform(
+            org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete(
+                "/api/v1/urls/missing"))
+        .andExpect(status().isNotFound())
+        .andExpect(jsonPath("$.title").value("Short URL Not Found"))
+        .andExpect(jsonPath("$.detail").value("Short URL not found or inactive for code: missing"));
+  }
 }

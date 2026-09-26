@@ -94,4 +94,28 @@ public class UrlController {
     ShortUrlResponse response = service.getShortUrlMetadata(code);
     return ResponseEntity.ok(response);
   }
+
+  @Operation(
+      summary = "Deactivate a short URL",
+      description =
+          "Soft-deactivates an existing short code setting active=false (idempotent 204 response).")
+  @ApiResponses(
+      value = {
+        @ApiResponse(responseCode = "204", description = "Deactivated successfully (no content)"),
+        @ApiResponse(
+            responseCode = "404",
+            description = "Short URL code not found",
+            content =
+                @Content(
+                    mediaType = "application/problem+json",
+                    schema = @Schema(implementation = ProblemDetail.class)))
+      })
+  @org.springframework.web.bind.annotation.DeleteMapping("/{code}")
+  public ResponseEntity<Void> deactivateShortUrl(
+      @Parameter(description = "7-character short code identifier", example = "abc1234")
+          @PathVariable("code")
+          String code) {
+    service.deactivateShortUrl(code);
+    return ResponseEntity.noContent().build();
+  }
 }

@@ -121,4 +121,37 @@ class ShortUrlServiceTest {
         com.urlshortener.exception.UrlNotFoundException.class,
         () -> service.getShortUrlMetadata("missing"));
   }
+
+  @Test
+  void deactivateShortUrl_activeCode_setsActiveFalse() {
+    ShortUrl shortUrl = new ShortUrl("codeDeact", "https://example.com");
+    assertTrue(shortUrl.isActive());
+    when(repository.findByCode("codeDeact")).thenReturn(java.util.Optional.of(shortUrl));
+
+    service.deactivateShortUrl("codeDeact");
+
+    org.junit.jupiter.api.Assertions.assertFalse(shortUrl.isActive());
+    verify(repository, times(1)).save(shortUrl);
+  }
+
+  @Test
+  void deactivateShortUrl_alreadyInactive_idempotentNoAction() {
+    ShortUrl shortUrl = new ShortUrl("codeDeact", "https://example.com");
+    shortUrl.setActive(false);
+    when(repository.findByCode("codeDeact")).thenReturn(java.util.Optional.of(shortUrl));
+
+    service.deactivateShortUrl("codeDeact");
+
+    org.junit.jupiter.api.Assertions.assertFalse(shortUrl.isActive());
+    verify(repository, times(0)).save(shortUrl);
+  }
+
+  @Test
+  void deactivateShortUrl_unknownCode_throwsUrlNotFoundException() {
+    when(repository.findByCode("missing")).thenReturn(java.util.Optional.empty());
+
+    assertThrows(
+        com.urlshortener.exception.UrlNotFoundException.class,
+        () -> service.deactivateShortUrl("missing"));
+  }
 }

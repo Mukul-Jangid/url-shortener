@@ -62,6 +62,23 @@ public class ShortUrlService {
   }
 
   @Transactional
+  public void deactivateShortUrl(String code) {
+    if (code == null || code.trim().isEmpty()) {
+      throw new UrlNotFoundException("Short code must not be blank");
+    }
+    ShortUrl shortUrl =
+        repository.findByCode(code.trim()).orElseThrow(() -> new UrlNotFoundException(code));
+
+    if (shortUrl.isActive()) {
+      shortUrl.setActive(false);
+      repository.save(shortUrl);
+      log.info("Deactivated short URL for code '{}'", code);
+    } else {
+      log.info("Short URL for code '{}' is already inactive", code);
+    }
+  }
+
+  @Transactional
   public ShortUrlResponse createShortUrl(CreateShortUrlRequest request) {
     validateOriginalUrl(request != null ? request.getOriginalUrl() : null);
 
