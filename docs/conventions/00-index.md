@@ -15,3 +15,4 @@ not merged as-is.
 | `testing.md` | Test types, conventions, concurrency-test expectations |
 | `logging.md` | Logging format, what not to log |
 | `commit-hygiene.md` | Commit message conventions tying commits back to tasks and AI work log entries |
+| `git-workflow.md` | Branching strategy, branch naming conventions, and merge lifecycle |

@@ -1,27 +1,44 @@
-# [TASK-ID] AI Work Log
+# [TASK-ID] Work Log & AI History
 
-- **Task file**: `docs/tasks/<module>/<TASK-ID>-*.md`
+- **Task File**: `docs/tasks/<module>/<TASK-ID>-*.md`
 - **Opened**: YYYY-MM-DD
 - **Closed**: YYYY-MM-DD (leave blank until closed)
 
-## Round 1 — YYYY-MM-DD
+## Task Summary & Goal
 
-- **Intent**: what outcome is wanted
-- **Constraints given to the AI**: explicit — e.g., "must not change existing API response
-  shape," "no new third-party dependencies"
-- **Acceptance criteria given to the AI**: what "correct" means for this prompt
-- **Technical context given to the AI**: which files/docs were shared
-- **Prompt summary**: paraphrase is fine; doesn't need to be verbatim
-- **AI output summary**: what was produced (files/functions touched, approach taken)
-- **Engineer decision**: Accepted as-is / Accepted with edits / Rejected
-- **Rationale**: why — this field carries the actual engineering judgment
-- **Edits made (if any)**: brief diff description
-- **Quality gates result**: pass/fail + which gates
+*A 2-3 sentence plain-language description of what this task delivers, why it is needed, and what it specifically avoids (exclusions).*
 
-*(add a new "## Round N" section for each further back-and-forth on this task)*
+## Implementation Decisions & Rationale
 
-## Final disposition
+*Key engineering choices made during this task. Explain the design decisions, trade-offs accepted, and reasons so developers and future AI agents understand why the code was written this way.*
 
-- **Engineer decision**: Accepted / Accepted with edits / Rejected and reworked manually
-- **Reviewer Decision** (required only if this task is on the high-impact list): APPROVED /
-  CHANGES REQUESTED, by whom, date
+* **Decision 1**: 
+* **Decision 2**: 
+
+## Files Created / Modified
+
+| File | Purpose / Description |
+|---|---|
+| `path/to/File.java` | Brief plain-language description of changes |
+
+## Quality Gates & Verification
+
+- [ ] **Compilation**: `./mvnw compile`
+- [ ] **Tests**: `./mvnw test`
+- [ ] **Formatting**: `./mvnw spotless:check`
+- **Verification Summary**: *Summary of test results and quality check output.*
+
+## Context for Future Tasks & Agents
+
+*Essential technical details that future developers or AI agents working on dependent tasks must know (e.g. database constraints, method signatures, exposed endpoints, or known limitations).*
+
+---
+
+## AI Collaboration Rounds
+
+### Round 1 — YYYY-MM-DD
+- **Intent**: High-level goal of this iteration round.
+- **Constraints**: Constraints imposed (e.g. no new dependencies, simple language).
+- **Outcome**: Summary of code/docs produced.
+- **Engineer Review**: Accepted / Accepted with edits / Rejected.
+- **Rationale**: Engineering reasoning for accepting or modifying the output.
